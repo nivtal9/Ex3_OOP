@@ -1,5 +1,9 @@
 package dataStructure;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import utils.Point3D;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
@@ -208,5 +212,28 @@ public class DGraph implements graph, Serializable {
     public int getMC() {
 
         return this.MC;
+    }
+
+    public void init(String graph_str) {
+        try {
+            JSONObject Graph_obj = new JSONObject();
+            JSONArray ed = Graph_obj.getJSONArray("Edges");
+            JSONArray nd = Graph_obj.getJSONArray("Nodes");
+            for (int i=0; i <nd.length();i++) {
+                int key=nd.getJSONObject(i).getInt("id");
+                Point3D point=new Point3D(nd.getJSONObject(i).getString("pos"));
+                node_data temp=new node(key,point,0);
+                this.addNode(temp);
+            }
+            for (int i = 0; i <ed.length() ; i++) {
+                int src=ed.getJSONObject(i).getInt("src");
+                int dest=ed.getJSONObject(i).getInt("dest");
+                Double Weight=ed.getJSONObject(i).getDouble("w");
+                this.connect(src,dest,Weight);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
