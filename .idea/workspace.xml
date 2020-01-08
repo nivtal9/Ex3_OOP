@@ -2,11 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bf76205-1ce8-49a9-9cc0-fc7a8d499efc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ex2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/dataStructure/DGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/dataStructure/DGraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServer_v0.21.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/A0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/A1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/A2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/A3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/A4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/A5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/SimpleGameClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/SimpleGameClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataStructure/DGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructure/DGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/SimpleGameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/SimpleGameClient.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +49,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -68,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Gui_Main">
+  <component name="RunManager" selected="Application.SimpleGameClient">
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.GUI" />
       <module name="ex2" />
@@ -88,6 +105,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleGameClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gameClient.SimpleGameClient" />
+      <module name="ex2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gameClient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,27 +156,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests in ex2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ex2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SimpleGameClient" />
         <item itemvalue="Application.Gui_Main" />
         <item itemvalue="Application.GUI" />
         <item itemvalue="JUnit.Ex2Test" />
         <item itemvalue="JUnit.Graph_AlgoTest.TSP" />
-        <item itemvalue="JUnit.Tests in ex2" />
       </list>
     </recent_temporary>
   </component>
