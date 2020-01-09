@@ -216,9 +216,9 @@ public class DGraph implements graph, Serializable {
 
     public void init(String graph_str) {
         try {
-            JSONObject Graph_obj = new JSONObject();
-            JSONArray ed = Graph_obj.getJSONArray("Edges");
+            JSONObject Graph_obj = new JSONObject(graph_str);
             JSONArray nd = Graph_obj.getJSONArray("Nodes");
+            JSONArray ed = Graph_obj.getJSONArray("Edges");
             for (int i=0; i <nd.length();i++) {
                 int key=nd.getJSONObject(i).getInt("id");
                 Point3D point=new Point3D(nd.getJSONObject(i).getString("pos"));
