@@ -33,10 +33,13 @@ public class SimpleGameClient {
 	public static void main(String[] a) {
 		test1();}
 	public static void test1() {
-		int scenario_num = 2;
+		for (int i = 0; i <24 ; i++) {
+
+		}
+		int scenario_num = 22;
 		game_service game = Game_Server.getServer(scenario_num); // you have [0,23] games
 		String g = game.getGraph();
-		System.out.println(g);
+		//System.out.println(g);
 		OOP_DGraph gg = new OOP_DGraph();
 		gg.init(g);
 		String info = game.toString();
@@ -46,16 +49,18 @@ public class SimpleGameClient {
 			JSONObject ttt = line.getJSONObject("GameServer");
 			int rs = ttt.getInt("robots");
 			System.out.println(info);
-			System.out.println(g);
+			//System.out.println(g);
 			// the list of fruits should be considered in your solution
 			Iterator<String> f_iter = game.getFruits().iterator();
-			while(f_iter.hasNext()) {System.out.println(f_iter.next());}	
+			while(f_iter.hasNext()) {System.out.println(f_iter.next());}
 			int src_node = 0;  // arbitrary node, you should start at one of the fruits
 			for(int a = 0;a<rs;a++) {
 				game.addRobot(src_node+a);
 			}
 		}
 		catch (JSONException e) {e.printStackTrace();}
+		Iterator<String> r_iter = game.getRobots().iterator();
+		while(r_iter.hasNext()) {System.out.println(r_iter.next());}
 		game.startGame();
 		// should be a Thread!!!
 		while(game.isRunning()) {
@@ -64,7 +69,7 @@ public class SimpleGameClient {
 		String results = game.toString();
 		System.out.println("Game Over: "+results);
 	}
-	/** 
+	/**
 	 * Moves each of the robots along the edge, 
 	 * in case the robot is on a node the next destination (next edge) is chosen (randomly).
 	 * @param game
