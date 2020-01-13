@@ -30,12 +30,9 @@ import oop_dataStructure.oop_graph;
  *
  */
 public class SimpleGameClient {
-	public static void main(String[] a) {
+		public static void main(String[] a) {
 		test1();}
 	public static void test1() {
-		for (int i = 0; i <24 ; i++) {
-
-		}
 		int scenario_num = 22;
 		game_service game = Game_Server.getServer(scenario_num); // you have [0,23] games
 		String g = game.getGraph();
