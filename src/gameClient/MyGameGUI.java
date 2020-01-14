@@ -1,5 +1,6 @@
 package gameClient;
 
+import GameElements.Robot;
 import Server.*;
 import dataStructure.*;
 import org.json.JSONObject;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
+import GameElements.*;
 
 public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
     private JButton start;
@@ -272,7 +274,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
         //**************continue CODE HERE******************//
     }
 
-
     /**
      * @param data  denote some data to be scaled
      * @param r_min the minimum of the range of your data
@@ -368,4 +369,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent mouseEvent) { /*not used*/}
+    Robot r=new Robot(game.getRobots(),0);
+    Point3D p=r.getLocation();
 }
