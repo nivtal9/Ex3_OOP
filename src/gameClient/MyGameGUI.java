@@ -41,8 +41,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
 
     public MyGameGUI()
     {
-//        gameClient = new GameClient();
-//        clientThread =new Thread(gameClient);
         INITGUI();
     }
 
@@ -58,6 +56,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         this.getContentPane().setLayout(new GridLayout());
         this.getContentPane().add(start);
         this.getContentPane().add(start2);
+
+        Thread clientThread =new Thread(this);
+        clientThread.start();
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
