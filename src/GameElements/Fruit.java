@@ -17,7 +17,7 @@ public class Fruit implements fruit_data{
 
     @Override
     public int getValue() {
-        return  Integer.parseInt(fruit_arr[2]);
+        return (int)Double.parseDouble(fruit_arr[2]);
      
     }
 

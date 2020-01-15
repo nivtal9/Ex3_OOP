@@ -1,5 +1,6 @@
 package gameClient;
 
+import GameElements.Fruit;
 import GameElements.Robot;
 import Server.*;
 import dataStructure.*;
@@ -16,10 +17,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.List;
 import GameElements.*;
 
-public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
+public class MyGameGUI extends JFrame implements ActionListener, MouseListener,Runnable {
     private JButton start;
     private JButton start2;
     private static graph level_graph;
@@ -32,14 +32,19 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
     private static DecimalFormat df2 = new DecimalFormat("#.##");
     private boolean firstpress=false;
     private int curr_robot;
-    public static final double EPSILON = 0.0000001;
+    private int first_press_src;
 
     public static void main(String[] args) {
         MyGameGUI g = new MyGameGUI();
         g.setVisible(true);
     }
 
-    public MyGameGUI() { INITGUI(); }
+    public MyGameGUI()
+    {
+//        gameClient = new GameClient();
+//        clientThread =new Thread(gameClient);
+        INITGUI();
+    }
 
     private void INITGUI() {
         PaintRobots = false;
@@ -53,7 +58,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
         this.getContentPane().setLayout(new GridLayout());
         this.getContentPane().add(start);
         this.getContentPane().add(start2);
-
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
@@ -65,37 +69,16 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
-                    game = Game_Server.getServer(level);
+                    game=Game_Server.getServer(level);
+                    /*clientThread =new Thread(gameClient);
+                    //game = Game_Server.getServer(level);*/
                     String Graph_str = game.getGraph();
                     level_graph = new DGraph();
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
                     repaint();
-                    String info = game.toString();
-                    JSONObject line;
-                    line = new JSONObject(info);
-                    JSONObject ttt = line.getJSONObject("GameServer");
-                    int rs = ttt.getInt("robots");
-                    int robot_src = -1;
-                    int i = 0;
-                    while (i < rs) {
-                        while (!level_graph.getV().contains(level_graph.getNode(robot_src))) {
-                            try {
-                                robot_src = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter intersection (in the map) number to place the Robot. you have: " + (rs - i) + " robots left to place"));
-                                if (!level_graph.getV().contains(level_graph.getNode(robot_src))) {
-                                    JOptionPane.showMessageDialog(start, "intersection not in the map!");
-                                }
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
-                            }
-                        }
-                        game.addRobot(robot_src);
-                        robot_src = -1;
-                        i++;
-                        PaintRobots = true;
-                    }
-                    repaint();
+                    ManuelsetRobots();
                     game.startGame();
                 }
             } catch (Exception e) {
@@ -117,32 +100,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
                     this.remove(this.start);
                     this.remove(this.start2);
                     repaint();
-                    String info = game.toString();
-                    JSONObject line;
-                    line = new JSONObject(info);
-                    JSONObject ttt = line.getJSONObject("GameServer");
-                    int rs = ttt.getInt("robots");
-                    int robot_src = -1;
-                    int i = 0;
-                    while (i < rs) {
-                        while (!level_graph.getV().contains(level_graph.getNode(robot_src))) {
-                            try {
-                                robot_src = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter intersection (in the map) number to place the Robot. you have: " + (rs - i) + " robots left to place"));
-                                if (!level_graph.getV().contains(level_graph.getNode(robot_src))) {
-                                    JOptionPane.showMessageDialog(start, "intersection not in the map!");
-                                }
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
-                            }
-                        }
-                        game.addRobot(robot_src);
-                        robot_src = -1;
-                        i++;
-                        PaintRobots = true;
-                    }
-                    repaint();
                     game.startGame();
-                   AutoMode();
+                    new Game_Algo().AutoMode(level_graph,game);
                 }
             }
             catch (Exception e) {
@@ -151,7 +110,38 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
             }
         }
     }
-
+    private void ManuelsetRobots() {
+        try {
+            String info = game.toString();
+            JSONObject line;
+            line = new JSONObject(info);
+            JSONObject ttt = line.getJSONObject("GameServer");
+            int rs = ttt.getInt("robots");
+            int robot_src = -1;
+            int i = 0;
+            while (i < rs) {
+                while (!level_graph.getV().contains(level_graph.getNode(robot_src))) {
+                    try {
+                        robot_src = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter intersection (in the map) number to place the Robot. you have: " + (rs - i) + " robots left to place"));
+                        if (!level_graph.getV().contains(level_graph.getNode(robot_src))) {
+                            JOptionPane.showMessageDialog(start, "intersection not in the map!");
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
+                    }
+                }
+                game.addRobot(robot_src);
+                robot_src = -1;
+                i++;
+                PaintRobots = true;
+            }
+            repaint();
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
+            e.printStackTrace();
+        }
+    }
     public void paint(Graphics g) {
         super.paint(g);
         if (level_graph != null) {
@@ -159,121 +149,93 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
             max_node_y = getMaxMinNode(level_graph.getV(), true, false);
             min_node_x = getMaxMinNode(level_graph.getV(), false, true);
             min_node_y = getMaxMinNode(level_graph.getV(), false, false);
-            try {
-                String[] splitData = game.toString().split("[:\\}]");
-                splitData[6]=splitData[6].substring(1,8);
-                BufferedImage graph_image=ImageIO.read(new File(splitData[6]+".png"));
-                g.drawImage(graph_image,30,60,null);
-            }
-            catch(Exception e){
-                System.out.println("graph photo not found");
-                e.printStackTrace();
-            }
-            for (node_data nodes : level_graph.getV()) {
-                Point3D nodes_src = nodes.getLocation();
-                g.setColor(Color.GREEN);
-                double nodes_src_x = scale(nodes_src.x(), min_node_x, max_node_x, 50, 1250);
-                double nodes_src_y = scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
-                g.fillOval((int) nodes_src_x - 7, (int) nodes_src_y - 7, 15, 15);
-                g.drawString("" + nodes.getKey(), (int) nodes_src_x, (int) (nodes_src_y + 20));
+            drawBackground(g);
+            drawGraph(g);
+            drawFruits(g);
+            drawRobots(g);
+        }
+    }
+    private void drawRobots(Graphics g) {
+        if (PaintRobots) {
+            for(int i=0;i<game.getRobots().size();i++){
                 try {
-                    for (edge_data edges : level_graph.getE(nodes.getKey())) {
-                        g.setColor(Color.RED);
-                        Point3D nodes_dest = level_graph.getNode(edges.getDest()).getLocation();
-                        double nodes_dest_x = scale(nodes_dest.x(), min_node_x, max_node_x, 50, 1250);
-                        double nodes_dest_y = scale(nodes_dest.y(), min_node_y, max_node_y, 50, 650);
-                        Graphics2D g2 = (Graphics2D) g;
-                        g2.setStroke(new BasicStroke(2));
-                        g2.drawLine((int) nodes_src_x, (int) nodes_src_y, (int) nodes_dest_x, (int) nodes_dest_y);
-
-                        g.setColor(Color.BLACK);
-                        int directed_x = (int) (nodes_src_x * 0.15 + nodes_dest_x * 0.85);
-                        int directed_y = (int) (nodes_src_y * 0.15 + nodes_dest_y * 0.85);
-                        g.fillOval(directed_x - 4, directed_y - 2, 7, 7);
-                        g.setColor(Color.DARK_GRAY);
-                        g.drawString("" + df2.format(edges.getWeight()), directed_x, directed_y);
-                    }
-                } catch (Exception e) {
-                    //this node has no edges, the graph is still being initialized...
-                }
-            }
-            Iterator<String> f_iter = game.getFruits().iterator();
-            while (f_iter.hasNext()) {
-                try {
-                    BufferedImage fruit_image = ImageIO.read(new File("data/apple.jpeg"));
-                    String[] splitData = f_iter.next().split("[:\\,]");
-                    splitData[6]=splitData[6].substring(1);
-                    double fruit_src_x = scale(Double.parseDouble(splitData[6]), min_node_x, max_node_x, 50, 1250);
-                    double fruit_src_y = scale( Double.parseDouble(splitData[7]), min_node_y, max_node_y, 50, 650);
-                    g.drawImage(fruit_image, (int) fruit_src_x - 15, (int) fruit_src_y-10, null);
-                    g.setColor(Color.BLACK);
-                    splitData[2]=splitData[2].substring(0,splitData[2].length()-2);
-                    if(splitData[4].equals("1")){
-                        g.drawString((splitData[2])+" ↑",(int) fruit_src_x-9, (int) fruit_src_y+11);
-                    }
-                    if(splitData[4].equals("-1")){
-                        g.drawString((splitData[2])+" ↓",(int) fruit_src_x-9, (int) fruit_src_y+11);
-                    }
+                    BufferedImage Robot_image = ImageIO.read(new File("data/robot3.png"));
+                    int Robot_src = new Robot(game.getRobots(),i).getSrc();
+                    double robot_src_x = scale(level_graph.getNode(Robot_src).getLocation().x(), min_node_x, max_node_x, 50, 1250);
+                    double robot_src_y = scale(level_graph.getNode(Robot_src).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                    g.drawImage(Robot_image, (int) robot_src_x - 15, (int) robot_src_y-10, null);
                 } catch (Exception e) {
                     System.out.println("404-file not found!");
                     e.printStackTrace();
                 }
             }
-            if (PaintRobots) {
-                Iterator<String>r_iter = game.getRobots().iterator();
-                while (r_iter.hasNext()) {
-                    try {
-                        BufferedImage Robot_image = ImageIO.read(new File("data/robot3.png"));
-                        String[] splitData = r_iter.next().split("[:\\,]");
-                        int Robot_src = Integer.parseInt(splitData[6]);
-                        double robot_src_x = scale(level_graph.getNode(Robot_src).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                        double robot_src_y = scale(level_graph.getNode(Robot_src).getLocation().y(), min_node_y, max_node_y, 50, 650);
-                        g.drawImage(Robot_image, (int) robot_src_x - 15, (int) robot_src_y-10, null);
-                    } catch (Exception e) {
-                        System.out.println("404-file not found!");
-                        e.printStackTrace();
-                    }
-                }
-            }
         }
     }
-    private void AutoMode() {
-        List<edge_data> edges_with_fruits=new LinkedList<>();
-        while(edges_with_fruits.size()==game.getFruits().size()) {
-            Iterator<String> f_iter = game.getFruits().iterator();
-            boolean b = false;
-            String[] splitData = f_iter.next().split("[:\\,]");
-            edge_data temp = null;
-            for (node_data nd : level_graph.getV()) {
-                for (edge_data ed : level_graph.getE(nd.getKey())) {
-                    double distance = Math.sqrt(Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().x()) - (level_graph.getNode(ed.getDest()).getLocation().x())), 2) + Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().y()) - (level_graph.getNode(ed.getDest()).getLocation().y())), 2));
-                    double fruit_from_dest = Math.sqrt(Math.pow(((Double.parseDouble(splitData[6]) - (level_graph.getNode(ed.getDest()).getLocation().x()))), 2) + Math.pow(((Double.parseDouble(splitData[7]) - (level_graph.getNode(ed.getDest()).getLocation().y()))), 2));
-                    double fruit_to_src = Math.sqrt(Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().x()) - (Double.parseDouble(splitData[6]))), 2) + Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().y()) - (Double.parseDouble(splitData[7]))), 2));
-                    if (fruit_from_dest + fruit_to_src - distance <= EPSILON) {
-                        temp = ed;
-                        b = true;
-                    }
-                    if (b) break;
+    private void drawFruits(Graphics g) {
+        for(int i=0;i<game.getFruits().size();i++) {
+            try {
+                BufferedImage fruit_image = ImageIO.read(new File("data/apple.jpeg"));
+                Fruit f= new Fruit(game.getFruits(),i);
+                double fruit_src_x = scale(f.getLocation().x(), min_node_x, max_node_x, 50, 1250);
+                double fruit_src_y = scale(f.getLocation().y(), min_node_y, max_node_y, 50, 650);
+                g.drawImage(fruit_image, (int) fruit_src_x - 15, (int) fruit_src_y-10, null);
+                g.setColor(Color.BLACK);
+                if(f.getType()==1){
+                    g.drawString(f.getValue()+" ↑",(int) fruit_src_x-9, (int) fruit_src_y+11);
                 }
-                if (b) break;
-            }
-            if (splitData[4].equals("1")) {
-                if (Math.min(temp.getSrc(), temp.getDest()) == temp.getDest()) {
-                    edges_with_fruits.add(level_graph.getEdge(temp.getDest(), temp.getSrc()));
-                } else {
-                    edges_with_fruits.add(temp);
+                if(f.getType()==-1){
+                    g.drawString(f.getValue()+" ↓",(int) fruit_src_x-9, (int) fruit_src_y+11);
                 }
-            } else {
-                if (Math.max(temp.getSrc(), temp.getDest()) == temp.getDest()) {
-                    edges_with_fruits.add(level_graph.getEdge(temp.getDest(), temp.getSrc()));
-                } else {
-                    edges_with_fruits.add(temp);
-                }
+            } catch (Exception e) {
+                System.out.println("404-file not found!");
+                e.printStackTrace();
             }
         }
-        //**************continue CODE HERE******************//
-    }
 
+    }
+    private void drawBackground(Graphics g) {
+        try {
+            String[] splitData = game.toString().split("[:\\}]");
+            splitData[6]=splitData[6].substring(1,8);
+            BufferedImage graph_image=ImageIO.read(new File(splitData[6]+".png"));
+            g.drawImage(graph_image,30,60,null);
+        }
+        catch(Exception e){
+            System.out.println("graph photo not found");
+            e.printStackTrace();
+        }
+    }
+    private void drawGraph(Graphics g){
+        for (node_data nodes : level_graph.getV()) {
+            Point3D nodes_src = nodes.getLocation();
+            g.setColor(Color.GREEN);
+            double nodes_src_x = scale(nodes_src.x(), min_node_x, max_node_x, 50, 1250);
+            double nodes_src_y = scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
+            g.fillOval((int) nodes_src_x - 7, (int) nodes_src_y - 7, 15, 15);
+            g.drawString("" + nodes.getKey(), (int) nodes_src_x, (int) (nodes_src_y + 20));
+            try {
+                for (edge_data edges : level_graph.getE(nodes.getKey())) {
+                    g.setColor(Color.RED);
+                    Point3D nodes_dest = level_graph.getNode(edges.getDest()).getLocation();
+                    double nodes_dest_x = scale(nodes_dest.x(), min_node_x, max_node_x, 50, 1250);
+                    double nodes_dest_y = scale(nodes_dest.y(), min_node_y, max_node_y, 50, 650);
+                    Graphics2D g2 = (Graphics2D) g;
+                    g2.setStroke(new BasicStroke(2));
+                    g2.drawLine((int) nodes_src_x, (int) nodes_src_y, (int) nodes_dest_x, (int) nodes_dest_y);
+
+                    g.setColor(Color.BLACK);
+                    int directed_x = (int) (nodes_src_x * 0.15 + nodes_dest_x * 0.85);
+                    int directed_y = (int) (nodes_src_y * 0.15 + nodes_dest_y * 0.85);
+                    g.fillOval(directed_x - 4, directed_y - 2, 7, 7);
+                    g.setColor(Color.DARK_GRAY);
+                    g.drawString("" + df2.format(edges.getWeight()), directed_x, directed_y);
+                }
+            } catch (Exception e) {
+                //this node has no edges, the graph is still being initialized...
+            }
+        }
+
+    }
     /**
      * @param data  denote some data to be scaled
      * @param r_min the minimum of the range of your data
@@ -286,7 +248,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
         double res = ((data - r_min) / (r_max - r_min)) * (t_max - t_min) + t_min;
         return res;
     }
-
     /**
      * @param col Collection of node_data in level_graph
      * @param b   true to get MaxNode false to get MinNode
@@ -328,31 +289,30 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e1) {
-        String[] splitData=null;
         if(!firstpress) {
             for (int i = 0; i < game.getRobots().size(); i++) {
-                splitData = game.getRobots().get(i).split("[:\\,]");
-                double RobotlocationScaled_X = scale(level_graph.getNode(Integer.parseInt(splitData[6])).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                double RobotlocationScaled_y = scale(level_graph.getNode(Integer.parseInt(splitData[6])).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                Robot r=new Robot(game.getRobots(),i);
+                double RobotlocationScaled_X = scale(level_graph.getNode(r.getSrc()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
+                double RobotlocationScaled_y = scale(level_graph.getNode(r.getSrc()).getLocation().y(), min_node_y, max_node_y, 50, 650);
                 double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
                 double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
-                if (Math.abs(RobotlocationScaled_X - e1_get_x) < 5 && Math.abs(RobotlocationScaled_y - e1_get_y) < 5) {
+                if (Math.abs(RobotlocationScaled_X - e1_get_x) < 10 && Math.abs(RobotlocationScaled_y - e1_get_y) < 10) {
                     curr_robot = i;
                     firstpress = true;
+                    first_press_src=r.getSrc();
                 }
             }
         }
         if(firstpress){
-            for(edge_data ed:level_graph.getE(Integer.parseInt(splitData[6]))){
+            for(edge_data ed:level_graph.getE(first_press_src)) {
                 double destlocationScaled_X=scale(level_graph.getNode(ed.getDest()).getLocation().x(),min_node_x,max_node_x,50,1250);
                 double destlocationScaled_y=scale(level_graph.getNode(ed.getDest()).getLocation().y(),min_node_y,max_node_y,50,650);
                 double e1_get_y=scale(e1.getY(),0,700,0,700);
                 double e1_get_x=scale(e1.getX(),0,1300,0,1300);
-                if(Math.abs(destlocationScaled_X-e1_get_x)<5&&Math.abs(destlocationScaled_y-e1_get_y)<5){
+                if(Math.abs(destlocationScaled_X-e1_get_x)<10&&Math.abs(destlocationScaled_y-e1_get_y)<10){
                     game.chooseNextEdge(curr_robot,ed.getDest());
-                    /*while() {
-                        game.move();
-                    }*/
+                    game.move();
+                    repaint();
                     firstpress=false;
                 }
             }
@@ -369,6 +329,24 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent mouseEvent) { /*not used*/}
-    Robot r=new Robot(game.getRobots(),0);
-    Point3D p=r.getLocation();
+    @Override
+    public void run() {
+        int dt=100;
+        int ind=0;
+        System.out.println("YAllaa HAifa");
+        if(game!=null) {
+            while (game.isRunning()) {
+                try {
+                    if (ind % 2 == 0) {
+                        repaint();
+                    }
+                    Thread.sleep(dt);
+                    ind++;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

@@ -15,15 +15,15 @@ public class Robot implements robot_data {
     }
     @Override
     public int getValue() {
-        return Integer.parseInt(robot_arr[5]);
+        return Integer.parseInt(robot_arr[4]);
     }
     @Override
     public int getDest() {
-        return Integer.parseInt(robot_arr[9]);
+        return Integer.parseInt(robot_arr[8]);
     }
     @Override
     public int getSrc() {
-        return Integer.parseInt(robot_arr[7]);
+        return Integer.parseInt(robot_arr[6]);
     }
     @Override
     public Point3D getLocation() {
