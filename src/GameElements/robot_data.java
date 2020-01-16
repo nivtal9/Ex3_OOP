@@ -12,6 +12,10 @@ public interface robot_data {
      */
     public int getValue();
     /**
+     * @return the Id of this Robot.
+     */
+    public int getId();
+    /**
      * @return the remark node id associated with this Robot Dest.
      * if the user wont set a Dest, Default is -1
      */

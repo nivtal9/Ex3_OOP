@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/nivt_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/robot_data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/robot_data.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameElements/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/robot_data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/robot_data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +161,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0bf76205-1ce8-49a9-9cc0-fc7a8d499efc" name="Default Changelist" comment="" />
+      <changelist id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="" />
       <created>1577001875901</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
