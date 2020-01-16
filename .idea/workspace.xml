@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/nivt_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/robot_data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/robot_data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Fruit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Fruit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameElements/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameElements/robot_data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/robot_data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Fruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/SimpleGameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/SimpleGameClient.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

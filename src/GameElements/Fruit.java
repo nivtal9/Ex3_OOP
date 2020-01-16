@@ -26,19 +26,10 @@ public class Fruit implements fruit_data{
         return Integer.parseInt(fruit_arr[4]);
 
     }
-
     @Override
     public Point3D getLocation() {
-
-        fruit_arr[6]=fruit_arr[6].substring(1);
-        double x=Double.parseDouble(fruit_arr[6]);
+        double x=Double.parseDouble(fruit_arr[6].substring(1));
         double y=Double.parseDouble(fruit_arr[7]);
-        double z=0.0;
-        Point3D location= new Point3D( x, y, z);
-        return location;
+        return new Point3D( x, y, 0.0);
     }
-
-
-
-
 }

@@ -4,6 +4,7 @@ import GameElements.Fruit;
 import GameElements.Robot;
 import Server.*;
 import dataStructure.*;
+import org.json.JSONException;
 import org.json.JSONObject;
 import utils.Point3D;
 import javax.imageio.ImageIO;
@@ -17,6 +18,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.List;
+
 import GameElements.*;
 
 public class MyGameGUI extends JFrame implements ActionListener, MouseListener,Runnable {
@@ -84,9 +87,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
-                    repaint();
                     ManuelsetRobots();
                     game.startGame();
+                    repaint();
                     clientThread.start();
                 }
             } catch (Exception e) {
@@ -108,15 +111,17 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
-                    repaint();
+                    AutosetRobot();
+                    clientThread.start();
                     game.startGame();
-                    new Game_Algo().AutoMode(level_graph, game);
+                    repaint();
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
                 e.printStackTrace();
             }
         }
+        //if (str.equals("New Game")) { }
     }
 
     private void ManuelsetRobots() {
@@ -149,6 +154,29 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
             e.printStackTrace();
         }
+    }
+
+    private void AutosetRobot() throws JSONException {
+        List<String> Temp_Fruit = game.getFruits();
+        String info = game.toString();
+        JSONObject line;
+        line = new JSONObject(info);
+        JSONObject ttt = line.getJSONObject("GameServer");
+        int rs = ttt.getInt("robots");
+        for (int i = 0; i < rs; i++) {
+            int maxFruit = Integer.MIN_VALUE;
+            int MaxFruitID = 0;
+            for (int j = 0; j < Temp_Fruit.size(); j++) {
+                Fruit f = new Fruit(Temp_Fruit, j);
+                if (f.getValue() > maxFruit) {
+                    maxFruit = f.getValue();
+                    MaxFruitID = j;
+                }
+            }
+            game.addRobot(new Game_Algo().getFruitEdge(MaxFruitID,game,level_graph).getSrc());
+            Temp_Fruit.remove(MaxFruitID);
+        }
+        PaintRobots = true;
     }
     @Override
     public void paintComponents(Graphics g){
@@ -228,7 +256,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     }
                 }
             }
-            g.drawString("00:" + (game.timeToEnd() / 1000)+" Total Score: "+new Robot(game.toString()).TotalScore(), 150, 50);
+            g.drawString("Time 00:" + (game.timeToEnd() / 1000)+" Total Score: "+new Robot(game.toString()).TotalScore(), 150, 50);
         }
     }
     @Override
@@ -294,28 +322,42 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     @Override
     public void mouseClicked(MouseEvent e1) {
         if(ManuelMode) {
-            if(!firstpress) {
-                for (int i=0;i<game.getRobots().size();i++){
-                    choosenrobot=new Robot(game.getRobots(),i);
-                    double RobotlocationX = scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                    double RobotlocationY = scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().y(), min_node_y, max_node_y, 50, 650);
-                    double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
-                    double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
-                    if(Math.abs(RobotlocationX-e1_get_x)<15&&Math.abs(RobotlocationY-e1_get_y)<15){
-                        firstpress=true;
-                        break;
+            if(game.getRobots().size()==1) {
+                Robot r = new Robot(game.getRobots(), 0);
+                double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
+                double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
+                for (edge_data ed : level_graph.getE(r.getSrc())) {
+                    double ndlocationX = scale(level_graph.getNode(ed.getDest()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
+                    double ndlocationY = scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                    if (Math.abs(e1_get_x - ndlocationX) < 25 && Math.abs(e1_get_y - ndlocationY) < 25) {
+                        game.chooseNextEdge(0, ed.getDest());
                     }
                 }
             }
-            if(firstpress) {
-                double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
-                double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
-                for (edge_data ed : level_graph.getE(choosenrobot.getSrc())) {
-                    double ndlocationX = scale(level_graph.getNode(ed.getDest()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                    double ndlocationY = scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
-                    if (Math.abs(e1_get_x - ndlocationX) < 15 && Math.abs(e1_get_y - ndlocationY) < 15) {
-                        game.chooseNextEdge(choosenrobot.getId(), ed.getDest());
-                        firstpress=false;
+            else {
+                if (!firstpress) {
+                    for (int i = 0; i < game.getRobots().size(); i++) {
+                        choosenrobot = new Robot(game.getRobots(), i);
+                        double RobotlocationX = scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
+                        double RobotlocationY = scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                        double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
+                        double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
+                        if (Math.abs(RobotlocationX - e1_get_x) < 15 && Math.abs(RobotlocationY - e1_get_y) < 15) {
+                            firstpress = true;
+                            break;
+                        }
+                    }
+                }
+                if (firstpress) {
+                    double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
+                    double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
+                    for (edge_data ed : level_graph.getE(choosenrobot.getSrc())) {
+                        double ndlocationX = scale(level_graph.getNode(ed.getDest()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
+                        double ndlocationY = scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                        if (Math.abs(e1_get_x - ndlocationX) < 15 && Math.abs(e1_get_y - ndlocationY) < 15) {
+                            game.chooseNextEdge(choosenrobot.getId(), ed.getDest());
+                            firstpress = false;
+                        }
                     }
                 }
             }
