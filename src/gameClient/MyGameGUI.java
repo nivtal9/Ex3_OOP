@@ -37,6 +37,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private boolean ManuelMode;
     private boolean firstpress=false;
     private Robot choosenrobot;
+    private boolean AutoMode=false;
+    private Game_Algo ga;
 
     public static void main(String[] args) {
         MyGameGUI g = new MyGameGUI();
@@ -112,14 +114,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     this.remove(this.start);
                     this.remove(this.start2);
                     game.startGame();
-                    Game_Algo ga=new Game_Algo();
+                    ga=new Game_Algo();
                     ga.AutosetRobot(game,level_graph);
                     PaintRobots=true;
-                    repaint();
+                    game.startGame();
                     clientThread.start();
-                    while (game.isRunning()) {
-                        ga.MoveRobots(game, level_graph);
-                    }
+                    AutoMode=true;
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
@@ -361,6 +361,16 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     public void run() {
         int dt = 50;
         while (game.isRunning()) {
+            if(AutoMode){
+                try {
+                    ga.MoveRobots(game, level_graph);
+                    game.move();
+                    repaint();
+                    Thread.sleep(dt);
+                }catch (InterruptedException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
             try {
                 game.move();
                 repaint();
