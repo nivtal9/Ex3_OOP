@@ -5,13 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Fruit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Fruit.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameElements/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Fruit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/SimpleGameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/SimpleGameClient.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

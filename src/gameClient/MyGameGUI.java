@@ -87,9 +87,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
+                    repaint();
                     ManuelsetRobots();
                     game.startGame();
-                    repaint();
                     clientThread.start();
                 }
             } catch (Exception e) {
@@ -111,10 +111,15 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
-                    AutosetRobot();
-                    clientThread.start();
                     game.startGame();
+                    Game_Algo ga=new Game_Algo();
+                    ga.AutosetRobot(game,level_graph);
+                    PaintRobots=true;
                     repaint();
+                    clientThread.start();
+                    while (game.isRunning()) {
+                        ga.MoveRobots(game, level_graph);
+                    }
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
@@ -155,29 +160,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             e.printStackTrace();
         }
     }
-
-    private void AutosetRobot() throws JSONException {
-        List<String> Temp_Fruit = game.getFruits();
-        String info = game.toString();
-        JSONObject line;
-        line = new JSONObject(info);
-        JSONObject ttt = line.getJSONObject("GameServer");
-        int rs = ttt.getInt("robots");
-        for (int i = 0; i < rs; i++) {
-            int maxFruit = Integer.MIN_VALUE;
-            int MaxFruitID = 0;
-            for (int j = 0; j < Temp_Fruit.size(); j++) {
-                Fruit f = new Fruit(Temp_Fruit, j);
-                if (f.getValue() > maxFruit) {
-                    maxFruit = f.getValue();
-                    MaxFruitID = j;
-                }
-            }
-            game.addRobot(new Game_Algo().getFruitEdge(MaxFruitID,game,level_graph).getSrc());
-            Temp_Fruit.remove(MaxFruitID);
-        }
-        PaintRobots = true;
-    }
     @Override
     public void paintComponents(Graphics g){
         super.paint(g);
@@ -186,7 +168,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             max_node_y = getMaxMinNode(level_graph.getV(), true, false);
             min_node_x = getMaxMinNode(level_graph.getV(), false, true);
             min_node_y = getMaxMinNode(level_graph.getV(), false, false);
-            try {
+/*            try {
                 String[] splitData = game.toString().split("[:\\}]");
                 splitData[6] = splitData[6].substring(1, 8);
                 BufferedImage graph_image = ImageIO.read(new File(splitData[6] + ".png"));
@@ -194,10 +176,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             } catch (Exception e) {
                 System.out.println("graph photo not found");
                 e.printStackTrace();
-            }
+            }*/
             for (node_data nodes : level_graph.getV()) {
                 Point3D nodes_src = nodes.getLocation();
-                g.setColor(Color.GREEN);
+                g.setColor(Color.BLUE);
                 double nodes_src_x = scale(nodes_src.x(), min_node_x, max_node_x, 50, 1250);
                 double nodes_src_y = scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
                 g.fillOval((int) nodes_src_x - 7, (int) nodes_src_y - 7, 15, 15);
@@ -232,10 +214,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     g.drawImage(fruit_image, (int) fruit_src_x - 15, (int) fruit_src_y - 10, null);
                     g.setColor(Color.BLACK);
                     if (f.getType() == 1) {
-                        g.drawString(f.getValue() + " ↑", (int) fruit_src_x - 9, (int) fruit_src_y + 11);
+                        g.drawString(f.getValue() + " ^", (int) fruit_src_x - 9, (int) fruit_src_y + 11);
                     }
                     if (f.getType() == -1) {
-                        g.drawString(f.getValue() + " ↓", (int) fruit_src_x - 9, (int) fruit_src_y + 11);
+                        g.drawString(f.getValue() + " v", (int) fruit_src_x - 9, (int) fruit_src_y + 11);
                     }
                 } catch (Exception e) {
                     System.out.println("404-file not found!");

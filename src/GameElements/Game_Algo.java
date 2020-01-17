@@ -4,6 +4,10 @@ import Server.game_service;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class Game_Algo {
@@ -39,6 +43,33 @@ public class Game_Algo {
             } else {
                 return level_graph.getEdge(temp.getSrc(), temp.getDest());
             }
+        }
+    }
+    public void AutosetRobot(game_service game,graph level_graph) throws JSONException {
+        List<String> Temp_Fruit = game.getFruits();
+        String info = game.toString();
+        JSONObject line;
+        line = new JSONObject(info);
+        JSONObject ttt = line.getJSONObject("GameServer");
+        int rs = ttt.getInt("robots");
+        for (int i = 0; i < rs; i++) {
+            int maxFruit = Integer.MIN_VALUE;
+            int MaxFruitID = 0;
+            for (int j = 0; j < Temp_Fruit.size(); j++) {
+                Fruit f = new Fruit(Temp_Fruit, j);
+                if (f.getValue() > maxFruit) {
+                    maxFruit = f.getValue();
+                    MaxFruitID = j;
+                }
+            }
+            game.addRobot(new Game_Algo().getFruitEdge(MaxFruitID,game,level_graph).getSrc());
+            Temp_Fruit.remove(MaxFruitID);
+        }
+    }
+    public void MoveRobots(game_service game,graph levelgraph){
+        List<Integer> lst=new LinkedList<>();
+        for(int i=0;i<game.getRobots().size();i++){
+
         }
     }
 }
