@@ -66,6 +66,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private Robot choosenrobot;
     private boolean AutoMode=false;
     private Game_Algo ga;
+    private int level;
 
     /**
      * function main
@@ -123,7 +124,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=true;
             JFrame start = new JFrame();
             try {
-                int level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
+                level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
@@ -295,7 +296,20 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     }
                 }
             }
-            g.drawString("Time 00:" + (game.timeToEnd() / 1000)+" Total Score: "+new Robot(game.toString()).TotalScore(), 150, 50);
+            g.drawString("Level: "+level+"    Time 00:" + (game.timeToEnd() / 1000)+"    Total Score: "+new Robot(game.toString()).TotalScore(), 1050, 50);
+            if(game.getRobots().size()==1) {
+                g.drawString(game.getRobots().get(0).substring(0,60), 10, 50);
+            }
+            if(game.getRobots().size()==2) {
+                g.drawString(game.getRobots().get(0).substring(0,60), 10, 50);
+                g.drawString(game.getRobots().get(1).substring(0,60), 10, 70);
+            }
+            if(game.getRobots().size()==3) {
+                g.drawString(game.getRobots().get(0).substring(0,60), 10, 50);
+                g.drawString(game.getRobots().get(1).substring(0,60), 10, 70);
+                g.drawString(game.getRobots().get(2).substring(0,60), 10, 90);
+            }
+
         }
     }
 

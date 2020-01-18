@@ -30,4 +30,11 @@ public interface robot_data {
      * @return
      */
     public Point3D getLocation();
+
+    /**
+     * This Method is working only with the constuctor that gets *JUST* a String that contains the game info
+     * and returns the TotalScore added from all the robots
+     * @return
+     */
+    public int TotalScore();
 }

@@ -30,7 +30,7 @@ public class Robot implements robot_data {
      */
     @Override
     public int getValue() {
-        return Integer.parseInt(robot_arr[4]);
+        return (int)Double.parseDouble(robot_arr[4]);
     }
     /**
      * @return the remark node id associated with this Robot Dest.
