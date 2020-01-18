@@ -58,5 +58,8 @@ public class Robot implements robot_data {
      */
     @Override
     public Point3D getLocation() { return new Point3D(Double.parseDouble(robot_arr[12].substring(1)),Double.parseDouble(robot_arr[13]),0); }
+
+   //*******************????***************************//is that needed?
+    
     public int TotalScore(){return Integer.parseInt(robot_arr[6]);}
 }

@@ -13,6 +13,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This class contain number of algorithms used in automatic mode
+ * @author sarah-han
+ *
+ */
 public class Game_Algo  implements auto_game {
     public static final double EPSILON = 0.0000001;
 
@@ -164,7 +169,7 @@ public class Game_Algo  implements auto_game {
         }*/
     }
     /**
-     * the function "MoveRobots" calls this privet function to help direct a robot to his next destination
+     * the function "MoveRobots" calls this private function to help direct a robot to his next destination
      * for on all fruits in the level
      * call function "shortestPathDist" which receive  src  and dest (of the fruit edge)
      * compere all double "shortestPathDist" and save the min double and the dest relevant
