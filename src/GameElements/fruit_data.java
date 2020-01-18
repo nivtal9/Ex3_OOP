@@ -14,7 +14,6 @@ import java.util.List;
     public interface fruit_data {
         /**
          * Return the value (score) associated with this fruit
-         *
          * @return
          */
         public int getValue();
@@ -34,16 +33,5 @@ import java.util.List;
          * @return
          */
         public Point3D getLocation();
-    /**
-     * Return the boolean value for availability of the fruit
-     *
-     * @return
-     */
-    public boolean get_is_Avilable();
-    /**
-     * set the boolean value for availability of the fruit
-     *
-     * @return
-     */
-    public void set_is_Avilable(boolean b);
+
     }

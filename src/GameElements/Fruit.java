@@ -5,28 +5,43 @@ import utils.Point3D;
 import java.util.List;
 
 public class Fruit implements fruit_data{
-
+    /**
+     * private data types of the class
+     * String[] fruit_arr
+     */
     private String[] fruit_arr;
-    private boolean is_Avilable;
+
     /**
      * simple constructor
      * @return
      */
     public Fruit (List<String> lst, int i) {
         fruit_arr = lst.get(i).split("[:\\,]");
-        this.is_Avilable=true;
     }
-
+    /**
+     * Return the value (score) associated with this fruit
+     * @return
+     */
     @Override
     public int getValue() {
         return (int)Double.parseDouble(fruit_arr[2]);
-     
-    }
 
+    }
+    /**
+     * Return the type associated with this fruit.
+     * -1 ~> fruit located on edge which id src bigger then id dest
+     * 1 ~> fruit located on edge which id src smaller then id dest
+     *
+     * @return
+     */
     @Override
     public int getType() {
         return Integer.parseInt(fruit_arr[4]);
-
+    /**
+    * Return the location (of applicable) of this fruit
+    *
+    * @return
+    */
     }
     @Override
     public Point3D getLocation() {
@@ -35,13 +50,5 @@ public class Fruit implements fruit_data{
         return new Point3D( x, y, 0.0);
     }
 
-    @Override
-    public boolean get_is_Avilable() {
-        return this.is_Avilable;
-    }
 
-    @Override
-    public void set_is_Avilable(boolean b) {
-        this.is_Avilable=b;
-    }
 }

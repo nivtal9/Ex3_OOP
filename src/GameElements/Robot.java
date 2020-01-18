@@ -3,6 +3,10 @@ import utils.Point3D;
 import java.util.List;
 
 public class Robot implements robot_data {
+    /**
+     * private data types of the class
+     * String[] fruit_arr
+     */
     private String[] robot_arr;
 
     /**
@@ -13,19 +17,41 @@ public class Robot implements robot_data {
     public Robot(List<String> lst, int id) {
         robot_arr=lst.get(id).split("[:\\,]");
     }
+    //*****************????********************// is that needed?
+
     public Robot(String s){robot_arr=s.split("[:\\,]");}
+
+    /**
+     * @return the Value (Score) of this Robot.
+     */
     @Override
     public int getValue() {
         return Integer.parseInt(robot_arr[4]);
     }
+    /**
+     * @return the remark node id associated with this Robot Dest.
+     * if the user wont set a Dest, Default is -1
+     */
     @Override
     public int getDest() {
         return Integer.parseInt(robot_arr[8]);
     }
+    /**
+     * return the node id associated with this Robot Src
+     * @return
+     */
     @Override
-    public int getSrc() { return Integer.parseInt(robot_arr[6]); }
+    public int getSrc()
+    { return Integer.parseInt(robot_arr[6]); }
+    /**
+     * @return the Id of this Robot.
+     */
     @Override
     public int getId(){return Integer.parseInt(robot_arr[2]);}
+    /**
+     * return the remark (meta data) associated with this Robot Location.
+     * @return
+     */
     @Override
     public Point3D getLocation() { return new Point3D(Double.parseDouble(robot_arr[12].substring(1)),Double.parseDouble(robot_arr[13]),0); }
     public int TotalScore(){return Integer.parseInt(robot_arr[6]);}
