@@ -75,7 +75,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         MyGameGUI g = new MyGameGUI();
         g.setVisible(true);
     }
-
+    /**
+     * This function calls private function "INITGUI"
+     */
     public MyGameGUI()
     {
         INITGUI();
@@ -109,9 +111,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      * This function analyze data (later to be paint in the gui)
      * graph level,and robots.
      * if player choose to play automatically he will choose the level number.
-     * robots will be added by algorithm (calls a privet function AutoSetRobot)
+     * robots will be added by algorithm (calls a private function AutoSetRobot)
      * if player choose to play manually he will choose the level number
-     * and the first location for each robot.(calls a privet function ManuelsetRobots)
+     * and the first location for each robot.(calls a private function ManuelsetRobots)
      * @param actionEvent
      */
     @Override
@@ -172,7 +174,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     }
     /**
      * This private function called by "actionPerformed"
-     * player enter the location he chooses fro each robot the
+     * player enter the location he chooses for each robot.
+     * The location must be a valid vertex in the level map.
      */
     private void ManuelsetRobots() {
         try {

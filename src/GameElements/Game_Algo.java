@@ -18,6 +18,7 @@ import java.util.List;
  * @author sarah-han
  *
  */
+
 public class Game_Algo  implements auto_game {
     public static final double EPSILON = 0.0000001;
 
