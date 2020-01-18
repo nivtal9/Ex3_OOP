@@ -1,11 +1,15 @@
 package GameElements;
 import utils.Point3D;
 import java.util.List;
-
+/**
+ * This class represents the set of robot's that shown
+ * in a given game to play with
+ * @author nivtal9
+ */
 public class Robot implements robot_data {
     /**
      * private data types of the class
-     * String[] fruit_arr
+     * String[] robot_arr;
      */
     private String[] robot_arr;
 

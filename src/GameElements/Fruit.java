@@ -4,6 +4,13 @@ import utils.Point3D;
 
 import java.util.List;
 
+
+/**
+ * This class represents the set of operations applicable on a
+ * fruit used in the game.
+ * @author sarah-han
+ *
+ */
 public class Fruit implements fruit_data{
     /**
      * private data types of the class

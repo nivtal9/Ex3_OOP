@@ -22,7 +22,34 @@ import java.util.List;
 
 import GameElements.*;
 
+/**
+ * This class create gui for the game
+ * extends JFrame
+ * implements ActionListener
+ * implements MouseListener
+ * implements Runnable
+ * @author sarah-han
+ */
 public class MyGameGUI extends JFrame implements ActionListener, MouseListener,Runnable {
+    /**
+     * private data types of the class MyGameGUI
+     * JButton start;
+     * JButton start2;
+     * static graph level_graph;
+     * Boolean PaintRobots;
+     * double max_node_x;
+     * double max_node_y;
+     * double min_node_x;
+     * double min_node_y;
+     * game_service game;
+     * static DecimalFormat df2 = new DecimalFormat("#.##");
+     * Thread clientThread;
+     * boolean ManuelMode;
+     * boolean firstpress=false;
+     * Robot choosenrobot;
+     * boolean AutoMode=false;
+     * Game_Algo ga;
+     */
     private JButton start;
     private JButton start2;
     private static graph level_graph;
@@ -40,6 +67,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private boolean AutoMode=false;
     private Game_Algo ga;
 
+    /**
+     * function main
+     * Initialize new MyGameGUI() and set it to be visible
+     */
     public static void main(String[] args) {
         MyGameGUI g = new MyGameGUI();
         g.setVisible(true);
@@ -49,7 +80,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     {
         INITGUI();
     }
-
+    /**
+     * This function make the first init for the gui
+     * player must choose whether to play it manually or automatically
+     */
     private void INITGUI() {
         PaintRobots = false;
         this.setSize(1300, 700);
@@ -71,7 +105,15 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         Game.add(New_Game);
         New_Game.addActionListener(this);*/
     }
-
+    /**
+     * This function analyze data (later to be paint in the gui)
+     * graph level,and robots.
+     * if player choose to play automatically he will choose the level number.
+     * robots will be added by algorithm (calls a privet function AutoSetRobot)
+     * if player choose to play manually he will choose the level number
+     * and the first location for each robot.(calls a privet function ManuelsetRobots)
+     * @param actionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String str = actionEvent.getActionCommand();
@@ -128,7 +170,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         }
         //if (str.equals("New Game")) { }
     }
-
+    /**
+     * This private function called by "actionPerformed"
+     * player enter the location he chooses fro each robot the
+     */
     private void ManuelsetRobots() {
         try {
             String info = game.toString();
@@ -160,6 +205,15 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             e.printStackTrace();
         }
     }
+    /**
+     * This function paint the following data to the gui.
+     * graph
+     *background
+     * fruit
+     * robot
+     * called by "paint"
+     * @param g
+     */
     @Override
     public void paintComponents(Graphics g){
         super.paint(g);
@@ -168,7 +222,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             max_node_y = getMaxMinNode(level_graph.getV(), true, false);
             min_node_x = getMaxMinNode(level_graph.getV(), false, true);
             min_node_y = getMaxMinNode(level_graph.getV(), false, false);
-/*            try {
+    /*      try {
                 String[] splitData = game.toString().split("[:\\}]");
                 splitData[6] = splitData[6].substring(1, 8);
                 BufferedImage graph_image = ImageIO.read(new File(splitData[6] + ".png"));
@@ -241,6 +295,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             g.drawString("Time 00:" + (game.timeToEnd() / 1000)+" Total Score: "+new Robot(game.toString()).TotalScore(), 150, 50);
         }
     }
+
+    /**
+     * this function calls "paintComponents"
+     * and paint the gui
+     * @param g
+     */
     @Override
     public void paint(Graphics g) {
         Image IBI = createImage(1300, 700);
@@ -250,6 +310,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     }
 
     /**
+     * this function is a math Calculating for scale the items we paint
      * @param data  denote some data to be scaled
      * @param r_min the minimum of the range of your data
      * @param r_max the maximum of the range of your data
@@ -263,6 +324,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     }
 
     /**
+     * the function Calculating Max or Min Node
      * @param col Collection of node_data in level_graph
      * @param b   true to get MaxNode false to get MinNode
      * @param c   true to get x false to get y
@@ -301,6 +363,14 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         else return MinNode;
     }
 
+    /**
+     * this function responsible to make the movement of the robots in the Manuel game
+     * if only one robot the player can constantly choose the next dest for the robot
+     * because the server will save the robot id
+     * if more then one robot the player need to choose a robot and immediately a node and again robot and dest.
+     * because the server will not save the robot id after giving him a dest
+     * @param e1
+     */
     @Override
     public void mouseClicked(MouseEvent e1) {
         if(ManuelMode) {
@@ -345,18 +415,37 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             }
         }
     }
+
+    /**
+     * not used
+     * @param mouseEvent
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) { /*not used*/}
-
+    /**
+     * not used
+     * @param mouseEvent
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) { /*not used*/}
-
+    /**
+     * not used
+     * @param mouseEvent
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) { /*not used*/}
-
+    /**
+     * not used
+     * @param mouseEvent
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) { /*not used*/}
 
+    /**
+     * this function used because we have a thread.
+     * in Auto mode will call "MoveRobots" and "repaint"
+     * in manual mode will call "repaint"
+     */
     @Override
     public void run() {
         int dt = 50;
