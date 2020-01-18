@@ -20,6 +20,8 @@ public class Fruit implements fruit_data{
 
     /**
      * simple constructor
+     * @param i- the fruit location in the list the
+     * @param lst- list of string representing the fruit data
      * @return
      */
     public Fruit (List<String> lst, int i) {
