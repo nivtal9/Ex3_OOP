@@ -115,7 +115,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     this.remove(this.start2);
                     game.startGame();
                     ga=new Game_Algo();
-                    ga.AutosetRobot(game,level_graph);
+                    ga.AutoSetRobot(game,level_graph);
                     PaintRobots=true;
                     game.startGame();
                     clientThread.start();
