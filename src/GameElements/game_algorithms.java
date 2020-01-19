@@ -20,7 +20,7 @@ public interface game_algorithms {
      * @return
      */
 
-    public void MoveRobots(game_service game_service,graph graph) throws JSONException ;
+    void MoveRobots(game_service game_service,graph graph) throws JSONException ;
     /**
      * The function need to be an algorithm for first location fo the robots in the level
      * @param game_service
@@ -29,7 +29,7 @@ public interface game_algorithms {
      * @return
      */
 
-    public void AutoSetRobot(game_service game_service,graph graph) throws JSONException;
+    void AutoSetRobot(game_service game_service,graph graph) throws JSONException;
     /**
      * The function return the edge a specific fruit is on.
      * @param i- integer for fruit number
@@ -37,6 +37,6 @@ public interface game_algorithms {
      * @param graph of the level
      * @return edge
      */
-    public edge_data getFruitEdge(int i, game_service game_service, graph graph);
+    edge_data getFruitEdge(int i, game_service game_service, graph graph);
 
 }
