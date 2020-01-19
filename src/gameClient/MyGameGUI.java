@@ -66,7 +66,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private boolean AutoMode=false;
     private Game_Algo ga;
     private int level;
-    //public static KML_Logger log =null;
+    private static KML_Logger log;
 
     /**
      * function main
@@ -128,6 +128,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
+                    log =new KML_Logger(level);
                     game = Game_Server.getServer(level);
                     String Graph_str = game.getGraph();
                     level_graph = new DGraph();
@@ -152,7 +153,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
-                    //log =new KML_Logger(level);
+                    log =new KML_Logger(level);
                     game = Game_Server.getServer(level);
                     String Graph_str = game.getGraph();
                     level_graph = new DGraph();
@@ -273,9 +274,11 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     g.drawImage(fruit_image, (int) fruit_src_x - 15, (int) fruit_src_y - 10, null);
                     g.setColor(Color.BLACK);
                     if (f.getType() == 1) {
+                        MyGameGUI.log.Place_Mark("fruit_1",f.getLocation().toString());
                         g.drawString(f.getValue() + " ^", (int) fruit_src_x - 9, (int) fruit_src_y + 11);
                     }
                     if (f.getType() == -1) {
+                        MyGameGUI.log.Place_Mark("fruit_-1",f.getLocation().toString());
                         g.drawString(f.getValue() + " v", (int) fruit_src_x - 9, (int) fruit_src_y + 11);
                     }
                 } catch (Exception e) {
@@ -290,6 +293,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                         Robot Robot_src = new Robot(game.getRobots(), i);
                         double robot_src_x = scale(Robot_src.getLocation().x(), min_node_x, max_node_x, 50, 1250);
                         double robot_src_y = scale(Robot_src.getLocation().y(), min_node_y, max_node_y, 50, 650);
+                        MyGameGUI.log.Place_Mark("data/robot3.png",Robot_src.getLocation().toString());
                         g.drawImage(Robot_image, (int) robot_src_x - 15, (int) robot_src_y - 10, null);
                     } catch (Exception e) {
                         System.out.println("404-file not found!");
@@ -486,7 +490,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 e.printStackTrace();
             }
         }
-        //log.kmlEnd();
+        log.KML_Stop();
         JOptionPane.showMessageDialog(null, "GameOver, Final Score is: "+new Robot(game.toString()).TotalScore());
     }
 }
