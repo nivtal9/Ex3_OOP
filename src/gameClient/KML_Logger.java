@@ -4,24 +4,45 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
+/**
+ * this class responsible to create 24 kml files
+ * the file can be loaded to google earth
+ * and view the game course in a specific level
+ * the kml relevant only for auto game.
+ */
 class KML_Logger {
-
+    /**
+     * private data types of the class
+     * int level
+     * StringBuffer str- the string will be written there.
+     */
     private int level;
     private StringBuffer str;
 
+    /**
+     * simple constructor
+     * @param level
+     */
     KML_Logger(int level) {
         this.level = level;
         this.str = new StringBuffer();
         KML_Play();
     }
 
+    /**
+     * this function initialize the working platform
+     * attribute icon to node
+     * attribute icon to robot
+     * attribute icon to fruit
+     * the icon for fruit associated to type -1 (purple) will be different from fruit associated to type 1 (red)
+     */
     private void KML_Play()
     {
         str.append(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
                         "<kml xmlns=\"http://earth.google.com/kml/2.2\">\r\n" +
                         "  <Document>\r\n" +
-                        "    <name>" + "Game stage :"+this.level + "</name>" +"\r\n"+
+                        "    <name>" + "Game stage :"+level + "</name>" +"\r\n"+
                         " <Style id=\"node\">\r\n" +
                         "      <IconStyle>\r\n" +
                         "        <Icon>\r\n" +
@@ -57,6 +78,13 @@ class KML_Logger {
         );
     }
 
+    /**
+     * this function is used in "paint"
+     * after painting each element
+     * the function enters the kml the location of each element
+     * @param id
+     * @param location
+     */
     void Place_Mark(String id, String location)
     {
         LocalDateTime time = LocalDateTime.now();
@@ -73,6 +101,9 @@ class KML_Logger {
         );
     }
 
+    /**
+     * mark the kml the end of the script
+     */
     void KML_Stop()
     {
         str.append("  \r\n</Document>\r\n" +
@@ -80,6 +111,9 @@ class KML_Logger {
         SaveFile();
     }
 
+    /**
+     * save the kml string to a file
+     */
     private void SaveFile(){
         try
         {

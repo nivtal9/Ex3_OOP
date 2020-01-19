@@ -32,22 +32,22 @@ import GameElements.*;
 public class MyGameGUI extends JFrame implements ActionListener, MouseListener,Runnable {
     /**
      * private data types of the class MyGameGUI
-     * JButton start;
-     * JButton start2;
-     * static graph level_graph;
-     * Boolean PaintRobots;
-     * double max_node_x;
-     * double max_node_y;
-     * double min_node_x;
-     * double min_node_y;
-     * game_service game;
-     * static DecimalFormat df2 = new DecimalFormat("#.##");
-     * Thread clientThread;
-     * boolean ManuelMode;
-     * boolean firstpress=false;
-     * Robot choosenrobot;
-     * boolean AutoMode=false;
-     * Game_Algo ga;
+     * JButton start- Button for manual
+     * JButton start2-Button for auto
+     * static graph level_graph- the graph contains the node and edges of the level.
+     * Boolean PaintRobots-only in manual. true if the player choose a vertex to first locate the robot.
+     * double max_node_x- use in function scale
+     * double max_node_y- use in function scale
+     * double min_node_x- use in function scale
+     * double min_node_y- use in function scale
+     * game_service game- all the game info.
+     * static DecimalFormat df2 = new DecimalFormat("#.##")- change the double from 15 dig after the dot to 2 dig.
+     * Thread clientThread- thread for repainting the level and moving the robots every 50 mili sec.
+     * boolean ManuelMode- if true receive information for mouse click.
+     * boolean firstpress=false- if false choose robot. if true choose next node for the robot.
+     * Robot choosenrobot- save the id of the robot in mouse click.
+     * boolean AutoMode=false- for the thread
+     * Game_Algo ga- for using algorithms .
      */
     private JButton start;
     private JButton start2;
@@ -149,7 +149,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=false;
             JFrame start = new JFrame();
             try {
-                int level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
+                 level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
@@ -217,6 +217,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      *background
      * fruit
      * robot
+     * the data is also read by kml_logger
      * called by "paint"
      * @param g
      */
