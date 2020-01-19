@@ -27,9 +27,6 @@ on the lower corner shows the robots id, value, src, dest and speed.
 The graph based on the project [https://github.com/Sarah-han/ex2](https://github.com/Sarah-han/ex2)
 
 
-The graph based on the project [https://github.com/Sarah-han/ex2](https://github.com/Sarah-han/ex2)
-
-
 
 for more info of the project go to wiki.
 
