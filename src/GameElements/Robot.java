@@ -27,11 +27,8 @@ public class Robot implements robot_data {
      * @param s game.toString()
      */
     ////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
-    /**
-     * constructor *JUST* to get game info, the method that use that constructor is TotalScore().
-     * @param s game.toString()
-     */
-    ////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
+
+
     public Robot(String s){robot_arr=s.split("[:\\,]");}
 
     /**
