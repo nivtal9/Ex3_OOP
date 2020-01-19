@@ -10,10 +10,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/10.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/10.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/18.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/18.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/12.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/12.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/22.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/22.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

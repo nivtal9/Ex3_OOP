@@ -26,32 +26,42 @@ class KML_Logger {
     KML_Logger(int level) {
         this.level = level;
         str = new StringBuffer();
-        KML_Play();
+        //KML_Play();
+        KML_Start();
     }
-
     /**
-     * this function initialize the working platform
-     * attribute icon to node
-     * attribute icon to robot
-     * attribute icon to fruit
-     * the icon for fruit associated to type -1 (purple) will be different from fruit associated to type 1 (red)
+     * this function initialize the working platform to KML
      */
-    private void KML_Play()
-    {
+    private void KML_Start(){
         str.append(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
                         "<kml xmlns=\"http://earth.google.com/kml/2.2\">\r\n" +
                         "  <Document>\r\n" +
-                        "    <name>" + "Game stage :"+level + "</name>" +"\r\n"+
-                        " <Style id=\"node\">\r\n" +
-                        "      <IconStyle>\r\n" +
-                        "        <Icon>\r\n" +
-                        "          <href>http://maps.google.com/mapfiles/kml/pal3/icon35.png</href>\r\n" +
-                        "        </Icon>\r\n" +
-                        "        <hotSpot x=\"32\" y=\"1\" xunits=\"pixels\" yunits=\"pixels\"/>\r\n" +
-                        "      </IconStyle>\r\n" +
-                        "    </Style>" +
-                        " <Style id=\"fruit_-1\">\r\n" +
+                        "    <name>" + "Game stage :"+level + "</name>" +"\r\n"
+        );
+        KML_node();
+    }
+    /**
+     * this function initialize the node icon to KML
+     */
+    private void KML_node(){
+        str.append(" <Style id=\"node\">\r\n" +
+                "      <IconStyle>\r\n" +
+                "        <Icon>\r\n" +
+                "          <href>http://maps.google.com/mapfiles/kml/pal3/icon35.png</href>\r\n" +
+                "        </Icon>\r\n" +
+                "        <hotSpot x=\"32\" y=\"1\" xunits=\"pixels\" yunits=\"pixels\"/>\r\n" +
+                "      </IconStyle>\r\n" +
+                "    </Style>"
+        );
+        KML_Fruit();
+    }
+    /**
+     * this function initialize the Fruits icon to KML (Type 1 and -1)
+     */
+    private void KML_Fruit(){
+        str.append(
+                " <Style id=\"fruit_-1\">\r\n" +
                         "      <IconStyle>\r\n" +
                         "        <Icon>\r\n" +
                         "          <href>http://maps.google.com/mapfiles/kml/paddle/purple-stars.png</href>\r\n" +
@@ -66,8 +76,16 @@ class KML_Logger {
                         "        </Icon>\r\n" +
                         "        <hotSpot x=\"32\" y=\"1\" xunits=\"pixels\" yunits=\"pixels\"/>\r\n" +
                         "      </IconStyle>\r\n" +
-                        "    </Style>" +
-                        " <Style id=\"robot\">\r\n" +
+                        "    </Style>"
+        );
+        KML_Robot();
+    }
+    /**
+     * this function initialize the Robots icon to KML
+     */
+    private void KML_Robot(){
+        str.append(
+                " <Style id=\"robot\">\r\n" +
                         "      <IconStyle>\r\n" +
                         "        <Icon>\r\n" +
                         "          <href>http://maps.google.com/mapfiles/kml/shapes/motorcycling.png></href>\r\n" +
@@ -87,11 +105,11 @@ class KML_Logger {
      */
     void Place_Mark(String id, String location)
     {
-        LocalDateTime time = LocalDateTime.now();
+        LocalDateTime Present_time = LocalDateTime.now();
         str.append(
                 "    <Placemark>\r\n" +
                         "      <TimeStamp>\r\n" +
-                        "        <when>" + time+ "</when>\r\n" +
+                        "        <when>" + Present_time+ "</when>\r\n" +
                         "      </TimeStamp>\r\n" +
                         "      <styleUrl>#" + id + "</styleUrl>\r\n" +
                         "      <Point>\r\n" +
