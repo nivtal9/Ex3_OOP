@@ -66,7 +66,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private boolean AutoMode=false;
     private Game_Algo ga;
     private int level;
-    public static KML_Logger log =null;
+    //public static KML_Logger log =null;
 
     /**
      * function main
