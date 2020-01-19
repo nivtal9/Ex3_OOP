@@ -25,7 +25,7 @@ class KML_Logger {
      */
     KML_Logger(int level) {
         this.level = level;
-        this.str = new StringBuffer();
+        str = new StringBuffer();
         KML_Play();
     }
 

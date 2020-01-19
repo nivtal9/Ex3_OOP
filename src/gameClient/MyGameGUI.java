@@ -149,11 +149,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=false;
             JFrame start = new JFrame();
             try {
-<<<<<<< HEAD
                  level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
-=======
-                level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
->>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
@@ -169,8 +165,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ga.AutoSetRobot(game,level_graph);
                     PaintRobots=true;
                     game.startGame();
-                    clientThread.start();
                     AutoMode=true;
+                    clientThread.start();
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");

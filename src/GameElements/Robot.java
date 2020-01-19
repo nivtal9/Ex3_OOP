@@ -22,19 +22,10 @@ public class Robot implements robot_data {
     public Robot(List<String> lst, int id) {
         robot_arr=lst.get(id).split("[:\\,]");
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
     /**
      * constructor *JUST* to get game info, the method that use that constructor is TotalScore().
      * @param s game.toString()
      */
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
     public Robot(String s){robot_arr=s.split("[:\\,]");}
 
     /**
@@ -79,9 +70,6 @@ public class Robot implements robot_data {
      * this Method returns the TotalScore at the end of the game
      * @return
      */
-<<<<<<< HEAD
 
-=======
->>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
     public int TotalScore(){return Integer.parseInt(robot_arr[6]);}
 }
