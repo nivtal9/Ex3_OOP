@@ -149,7 +149,11 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=false;
             JFrame start = new JFrame();
             try {
+<<<<<<< HEAD
                  level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
+=======
+                level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
+>>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
@@ -234,15 +238,15 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 splitData[6] = splitData[6].substring(1, 8);
                 BufferedImage graph_image = ImageIO.read(new File(splitData[6] + ".png"));
                 g.drawImage(graph_image, 30, 60, null);
-            } catch (Exception e) {
+                } catch (Exception e) {
                 System.out.println("graph photo not found");
                 e.printStackTrace();
-            }
+                }
             for (node_data nodes : level_graph.getV()) {
                 Point3D nodes_src = nodes.getLocation();
                 g.setColor(Color.BLUE);
                 double nodes_src_x = scale(nodes_src.x(), min_node_x, max_node_x, 50, 1250);
-                double nodes_src_y = scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
+                double nodes_src_y = 700-scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
                 g.fillOval((int) nodes_src_x - 7, (int) nodes_src_y - 7, 15, 15);
                 g.drawString("" + nodes.getKey(), (int) nodes_src_x, (int) (nodes_src_y + 20));
                 try {
@@ -250,7 +254,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                         g.setColor(Color.RED);
                         Point3D nodes_dest = level_graph.getNode(edges.getDest()).getLocation();
                         double nodes_dest_x = scale(nodes_dest.x(), min_node_x, max_node_x, 50, 1250);
-                        double nodes_dest_y = scale(nodes_dest.y(), min_node_y, max_node_y, 50, 650);
+                        double nodes_dest_y = 700-scale(nodes_dest.y(), min_node_y, max_node_y, 50, 650);
                         Graphics2D g2 = (Graphics2D) g;
                         g2.setStroke(new BasicStroke(2));
                         g2.drawLine((int) nodes_src_x, (int) nodes_src_y, (int) nodes_dest_x, (int) nodes_dest_y);
@@ -271,7 +275,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     BufferedImage fruit_image = ImageIO.read(new File("data/apple.jpeg"));
                     Fruit f = new Fruit(game.getFruits(), i);
                     double fruit_src_x = scale(f.getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                    double fruit_src_y = scale(f.getLocation().y(), min_node_y, max_node_y, 50, 650);
+                    double fruit_src_y = 700-scale(f.getLocation().y(), min_node_y, max_node_y, 50, 650);
                     g.drawImage(fruit_image, (int) fruit_src_x - 15, (int) fruit_src_y - 10, null);
                     g.setColor(Color.BLACK);
                     if (f.getType() == 1) {
@@ -293,7 +297,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                         BufferedImage Robot_image = ImageIO.read(new File("data/robot3.png"));
                         Robot Robot_src = new Robot(game.getRobots(), i);
                         double robot_src_x = scale(Robot_src.getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                        double robot_src_y = scale(Robot_src.getLocation().y(), min_node_y, max_node_y, 50, 650);
+                        double robot_src_y = 700-scale(Robot_src.getLocation().y(), min_node_y, max_node_y, 50, 650);
                         MyGameGUI.log.Place_Mark("data/robot3.png",Robot_src.getLocation().toString());
                         g.drawImage(Robot_image, (int) robot_src_x - 15, (int) robot_src_y - 10, null);
                     } catch (Exception e) {
@@ -304,16 +308,16 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             }
             g.drawString("Level: "+level+"    Time 00:" + (game.timeToEnd() / 1000)+"    Total Score: "+new Robot(game.toString()).TotalScore(), 1050, 50);
             if(game.getRobots().size()==1) {
-                g.drawString(game.getRobots().get(0).substring(0,60), 10, 50);
+                g.drawString(game.getRobots().get(0).substring(0,60), 100, 610);
             }
             if(game.getRobots().size()==2) {
-                g.drawString(game.getRobots().get(0).substring(0,60), 10, 50);
-                g.drawString(game.getRobots().get(1).substring(0,60), 10, 70);
+                g.drawString(game.getRobots().get(0).substring(0,60), 100, 610);
+                g.drawString(game.getRobots().get(1).substring(0,60), 100, 630);
             }
             if(game.getRobots().size()==3) {
-                g.drawString(game.getRobots().get(0).substring(0,60), 10, 50);
-                g.drawString(game.getRobots().get(1).substring(0,60), 10, 70);
-                g.drawString(game.getRobots().get(2).substring(0,60), 10, 90);
+                g.drawString(game.getRobots().get(0).substring(0,60), 100, 610);
+                g.drawString(game.getRobots().get(1).substring(0,60), 100, 630);
+                g.drawString(game.getRobots().get(2).substring(0,60), 100, 650);
             }
 
         }

@@ -7,6 +7,7 @@ import java.util.List;
  * @author nivtal9
  */
 public class Robot implements robot_data {
+
     /**
      * private data types of the class
      * String[] robot_arr;
@@ -21,12 +22,19 @@ public class Robot implements robot_data {
     public Robot(List<String> lst, int id) {
         robot_arr=lst.get(id).split("[:\\,]");
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
     /**
      * constructor *JUST* to get game info, the method that use that constructor is TotalScore().
      * @param s game.toString()
      */
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
     public Robot(String s){robot_arr=s.split("[:\\,]");}
 
     /**
@@ -36,6 +44,7 @@ public class Robot implements robot_data {
     public int getValue() {
         return (int)Double.parseDouble(robot_arr[4]);
     }
+
     /**
      * @return the remark node id associated with this Robot Dest.
      * if the user wont set a Dest, Default is -1
@@ -44,6 +53,7 @@ public class Robot implements robot_data {
     public int getDest() {
         return Integer.parseInt(robot_arr[8]);
     }
+
     /**
      * return the node id associated with this Robot Src
      * @return
@@ -51,11 +61,13 @@ public class Robot implements robot_data {
     @Override
     public int getSrc()
     { return Integer.parseInt(robot_arr[6]); }
+
     /**
      * @return the Id of this Robot.
      */
     @Override
     public int getId(){return Integer.parseInt(robot_arr[2]);}
+
     /**
      * return the remark (meta data) associated with this Robot Location.
      * @return
@@ -67,6 +79,9 @@ public class Robot implements robot_data {
      * this Method returns the TotalScore at the end of the game
      * @return
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> cbf6039a8092b5bad349128e1c88b0362fb208b8
     public int TotalScore(){return Integer.parseInt(robot_arr[6]);}
 }

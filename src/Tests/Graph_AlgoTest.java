@@ -72,8 +72,7 @@ class Graph_AlgoTest {
 
     @Test
     void copy() {
-        graph g=new DGraph();
-        g=TestGraph.copy();
+        graph g=TestGraph.copy();
         assertEquals(g.nodeSize(),5);
         assertEquals(g.edgeSize(),8);
     }

@@ -20,9 +20,7 @@ import java.util.List;
  */
 
 public class Game_Algo  implements game_algorithms {
-    public static final double EPSILON = 0.0000001;
-
-
+    private static final double EPSILON = 0.0000001;
     /**
      * https://www.mathsisfun.com/algebra/distance-2-points.html
      * Calculate the distance between src and dest of an edge. "x"
@@ -38,7 +36,6 @@ public class Game_Algo  implements game_algorithms {
      * @return edge -a specific fruit is on.
      */
 
-    //*********************graph level_graph          game_service Game  **********************//
     @Override
     public edge_data getFruitEdge(int i,game_service Game,graph level_graph) {
         Fruit f = new Fruit(Game.getFruits(), i);
@@ -83,8 +80,6 @@ public class Game_Algo  implements game_algorithms {
      * @return
      */
 
-//*********************graph level_graph     game_service game  **********************//
-
     @Override
     public void AutoSetRobot(game_service game,graph level_graph) throws JSONException {
         List<String> Temp_Fruit = game.getFruits();
@@ -120,54 +115,26 @@ public class Game_Algo  implements game_algorithms {
      * @return
      */
 
-    //*********************graph levelgraph**********************//
-
-
     @Override
     public void MoveRobots(game_service game,graph levelgraph) throws JSONException {
         List<String> log = game.move();
         if(log!=null) {
-            for(int i=0;i<log.size();i++) {
-                String robot_json = log.get(i);
+            for (String robot_json : log) {
                 try {
                     JSONObject line = new JSONObject(robot_json);
                     JSONObject ttt = line.getJSONObject("Robot");
                     int rid = ttt.getInt("id");
                     int src = ttt.getInt("src");
                     int dest = ttt.getInt("dest");
-                    if(dest==-1) {
-                        dest = nextNode(levelgraph, src,game);
+                    if (dest == -1) {
+                        dest = nextNode(levelgraph, src, game);
                         game.chooseNextEdge(rid, dest);
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                catch (JSONException e) {e.printStackTrace();}
             }
         }
-        /*Robot robot=null;
-        Fruit fruit=null;
-        List<node_data> lst=new LinkedList<>();
-        Graph_Algo ga=new Graph_Algo();
-        ga.init(levelgraph);
-        for(int i=0;i<game.getRobots().size();i++){
-            robot =new Robot(game.getRobots(),i);
-            if(robot.getDest()!=-1) {
-                double shortestpathdist = Integer.MAX_VALUE;
-                for (int j = 0; j < game.getFruits().size(); j++) {
-                    fruit = new Fruit(game.getFruits(), j);
-                    if (ga.shortestPathDist(robot.getSrc(), getFruitEdge(j, game, levelgraph).getDest()) < shortestpathdist) {
-                        shortestpathdist = ga.shortestPathDist(robot.getSrc(), getFruitEdge(j, game, levelgraph).getDest());
-                        lst = ga.shortestPath(robot.getSrc(), getFruitEdge(j, game, levelgraph).getDest());
-                    }
-                    if (j == game.getFruits().size() - 1) {
-                        fruit.set_is_Avilable(false);
-                    }
-                }
-                for (int k = 1; k < lst.size(); k++) {
-                    while (robot.getDest()!=-1){game.move();}
-                    game.chooseNextEdge(i, lst.get(k).getKey());
-                }
-            }
-        }*/
     }
     /**
      * the function "MoveRobots" calls this private function to help direct a robot to his next destination
@@ -181,9 +148,6 @@ public class Game_Algo  implements game_algorithms {
      * @param levelgraph
      * @return key -id of node dest.
      */
-
-    //*********************graph levelgraph**********************//
-
 
     private int nextNode(graph levelgraph, int src,game_service game) {
         Graph_Algo ga=new Graph_Algo();
