@@ -21,8 +21,17 @@ public class Robot implements robot_data {
     public Robot(List<String> lst, int id) {
         robot_arr=lst.get(id).split("[:\\,]");
     }
-    //*****************????********************// is that needed?
-
+////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
+    /**
+     * constructor *JUST* to get game info, the method that use that constructor is TotalScore().
+     * @param s game.toString()
+     */
+    ////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
+    /**
+     * constructor *JUST* to get game info, the method that use that constructor is TotalScore().
+     * @param s game.toString()
+     */
+    ////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
     public Robot(String s){robot_arr=s.split("[:\\,]");}
 
     /**
@@ -58,8 +67,11 @@ public class Robot implements robot_data {
      */
     @Override
     public Point3D getLocation() { return new Point3D(Double.parseDouble(robot_arr[12].substring(1)),Double.parseDouble(robot_arr[13]),0); }
-
-   //*******************????***************************//is that needed?
-    
+////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
+    /**
+     * this Method returns the TotalScore at the end of the game
+     * @return
+     */
+    ////////////////////////////************NEED TO ADD TO WIKI************///////////////////////////
     public int TotalScore(){return Integer.parseInt(robot_arr[6]);}
 }

@@ -18,7 +18,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.List;
 
 import GameElements.*;
 
@@ -67,6 +66,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private boolean AutoMode=false;
     private Game_Algo ga;
     private int level;
+    public static KML_Logger log =null;
 
     /**
      * function main
@@ -152,6 +152,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
+                    //log =new KML_Logger(level);
                     game = Game_Server.getServer(level);
                     String Graph_str = game.getGraph();
                     level_graph = new DGraph();
@@ -226,7 +227,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             max_node_y = getMaxMinNode(level_graph.getV(), true, false);
             min_node_x = getMaxMinNode(level_graph.getV(), false, true);
             min_node_y = getMaxMinNode(level_graph.getV(), false, false);
-    /*      try {
+          try {
                 String[] splitData = game.toString().split("[:\\}]");
                 splitData[6] = splitData[6].substring(1, 8);
                 BufferedImage graph_image = ImageIO.read(new File(splitData[6] + ".png"));
@@ -234,7 +235,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             } catch (Exception e) {
                 System.out.println("graph photo not found");
                 e.printStackTrace();
-            }*/
+            }
             for (node_data nodes : level_graph.getV()) {
                 Point3D nodes_src = nodes.getLocation();
                 g.setColor(Color.BLUE);
@@ -485,6 +486,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 e.printStackTrace();
             }
         }
+        //log.kmlEnd();
         JOptionPane.showMessageDialog(null, "GameOver, Final Score is: "+new Robot(game.toString()).TotalScore());
     }
 }
