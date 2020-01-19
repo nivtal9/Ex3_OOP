@@ -11,7 +11,7 @@ import org.json.JSONException;
  * @author sarah-han
  */
 
-public interface auto_game {
+public interface game_algorithms {
     /**
      * The function need to be an algorithm which direct the robot to his next destination
      * @param game_service
