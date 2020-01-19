@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ex2:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/10.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/10.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/18.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/18.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/21.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/21.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameElements/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/22.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/22.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +55,7 @@
     <property name="create.test.in.the.same.root" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
@@ -65,7 +68,19 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tests in ex2">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.MyGameGUI">
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.GUI" />
       <module name="ex2" />
@@ -134,25 +149,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Tests in ex2" />
         <item itemvalue="Application.MyGameGUI" />
+        <item itemvalue="JUnit.Tests in ex2" />
         <item itemvalue="Application.SimpleGameClient" />
         <item itemvalue="Application.Gui_Main" />
         <item itemvalue="Application.GUI" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
