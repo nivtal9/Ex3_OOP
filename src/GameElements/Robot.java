@@ -70,6 +70,12 @@ public class Robot implements robot_data {
      * this Method returns the TotalScore at the end of the game
      * @return
      */
-
-    public int TotalScore(){return Integer.parseInt(robot_arr[6]);}
+    @Override
+    public int TotalScore(){return Integer.parseInt(robot_arr[8]);}
+    /**
+     * this Method returns the Total Moves of all the robots
+     * @return
+     */
+    @Override
+    public int TotalMoves(){return Integer.parseInt(robot_arr[6]);}
 }

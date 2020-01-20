@@ -37,4 +37,9 @@ public interface robot_data {
      * @return
      */
     public int TotalScore();
+    /**
+     * this Method returns the Total Moves of all the robots
+     * @return
+     */
+    public int TotalMoves();
 }

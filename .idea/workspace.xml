@@ -8,14 +8,18 @@
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/10.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/10.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/12.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServer_v0.27.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/2.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/4.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/4.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Robot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/robot_data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/robot_data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/robot_data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/robot_data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,8 +60,8 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/java-json.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
@@ -82,13 +86,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MyGameGUI">
-    <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.GUI" />
+  <component name="RunManager" selected="Application.Ex4_Client">
+    <configuration name="Ex4_Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gameClient.Ex4_Client" />
       <module name="ex2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gui.*" />
+          <option name="PATTERN" value="gameClient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -151,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Ex4_Client" />
         <item itemvalue="Application.MyGameGUI" />
-        <item itemvalue="JUnit.Tests in ex2" />
         <item itemvalue="Application.SimpleGameClient" />
+        <item itemvalue="JUnit.Tests in ex2" />
         <item itemvalue="Application.Gui_Main" />
-        <item itemvalue="Application.GUI" />
       </list>
     </recent_temporary>
   </component>
