@@ -239,6 +239,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             }
             for (node_data nodes : level_graph.getV()) {
                 Point3D nodes_src = nodes.getLocation();
+                MyGameGUI.log.Place_Mark("node", nodes.getLocation().toString());
                 g.setColor(Color.BLUE);
                 double nodes_src_x = scale(nodes_src.x(), min_node_x, max_node_x, 50, 1250);
                 double nodes_src_y = 700 - scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
