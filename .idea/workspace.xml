@@ -7,13 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameServer_v0.32.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/2.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-json.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-java-5.1.47.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/GameServer_v0.32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/Ex4_Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/Ex4_Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/SimpleDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/SimpleDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/Ex4_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/Ex4_Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/SimpleDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/SimpleDB.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +62,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/mysql-connector-java-5.1.47.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/GameServer_v0.33.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -94,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Gui_Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.Gui_Main" />
+    <configuration name="MyGameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gameClient.MyGameGUI" />
       <module name="ex2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gui.*" />
+          <option name="PATTERN" value="gameClient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,8 +115,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyGameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gameClient.MyGameGUI" />
+    <configuration name="SimpleDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gameClient.SimpleDB" />
       <module name="ex2" />
       <extension name="coverage">
         <pattern>
@@ -150,10 +158,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MyGameGUI" />
+        <item itemvalue="Application.SimpleDB" />
         <item itemvalue="Application.Ex4_Client" />
         <item itemvalue="Application.SimpleGameClient" />
         <item itemvalue="JUnit.Tests in ex2" />
-        <item itemvalue="Application.Gui_Main" />
       </list>
     </recent_temporary>
   </component>

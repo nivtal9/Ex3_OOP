@@ -20,29 +20,31 @@ public class SimpleDB {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-			int id1 = 999;  // "dummy existing ID  
-			int level = 0;
-			allUsers();
-			printLog();
-			String kml = getKML(id1,level);
-			System.out.println("***** KML file example: ******");
-			System.out.println(kml);
+			int id1 = 316334440;  // "real" existing ID & KML
+			int id2 = 12345678;
+			int level = 0;//1,2,3
+			printLog(id2);
+			//allUsers();	
+			//String kml1 = getKML(id1,level);
+			System.out.println("***** KML1 file example: ******");
+			//System.out.println(kml1);
 		}
 	/** simply prints all the games as played by the users (in the database).
 	 * 
 	 */
-		public static void printLog() {
+		public static void printLog(int id) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection connection = 
-						DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcUserPassword);
+				Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcUserPassword);
 				Statement statement = connection.createStatement();
-				String allCustomersQuery = "SELECT * FROM Logs;";
+				String allCustomersQuery = "SELECT * FROM Logs where userID="+id;
+			
 				ResultSet resultSet = statement.executeQuery(allCustomersQuery);
-				
+				int ind =0;
 				while(resultSet.next())
 				{
-					System.out.println("Id: " + resultSet.getInt("UserID")+","+resultSet.getInt("levelID")+","+resultSet.getInt("moves")+","+resultSet.getDate("time"));
+					System.out.println(ind+") Id: " + resultSet.getInt("UserID")+", level: "+resultSet.getInt("levelID")+", score: "+resultSet.getInt("score")+", moves: "+resultSet.getInt("moves")+", time: "+resultSet.getTimestamp("time"));
+					ind++;
 				}
 				resultSet.close();
 				statement.close();		
@@ -68,8 +70,7 @@ public class SimpleDB {
 				String allCustomersQuery = "SELECT * FROM Users where userID="+id+";";
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
-					Connection connection = 
-					DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcUserPassword);		
+					Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcUserPassword);
 					Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(allCustomersQuery);
 					if(resultSet!=null && resultSet.next()) {
@@ -96,7 +97,7 @@ public class SimpleDB {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(allCustomersQuery);
 				while(resultSet.next()) {
-					System.out.println("Id: " + resultSet.getInt("UserID"));
+					System.out.println("Id: " + resultSet.getInt("UserID")+", max_level:"+resultSet.getInt("levelNum"));
 					ans++;
 				}
 				resultSet.close();

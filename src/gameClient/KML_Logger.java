@@ -26,7 +26,6 @@ class KML_Logger {
     KML_Logger(int level) {
         this.level = level;
         str = new StringBuffer();
-        //KML_Play();
         KML_Start();
     }
     /**
@@ -56,6 +55,7 @@ class KML_Logger {
         );
         KML_Fruit();
     }
+
     /**
      * this function initialize the Fruits icon to KML (Type 1 and -1)
      */
@@ -109,13 +109,25 @@ class KML_Logger {
         str.append(
                 "    <Placemark>\r\n" +
                         "      <TimeStamp>\r\n" +
-                        "        <when>" + Present_time+ "</when>\r\n" +
+                        "        <when>" + Present_time.minusHours(2)+ "</when>\r\n" +
                         "      </TimeStamp>\r\n" +
                         "      <styleUrl>#" + id + "</styleUrl>\r\n" +
                         "      <Point>\r\n" +
                         "        <coordinates>" + location + "</coordinates>\r\n" +
                         "      </Point>\r\n" +
                         "    </Placemark>\r\n"
+        );
+    }
+    void Place_Mark_edge(String locationfrom,String locationto)
+    {
+        str.append(
+                "        <Placemark>\n" +
+                        "      <LineString>\n" +
+                        "        <extrude>1</extrude>\n" +
+                        "        <tessellate>1</tessellate>\n" +
+                        "        <coordinates>"+locationfrom+" "+locationto+"</coordinates>\n" +
+                        "      </LineString>\n" +
+                        "    </Placemark> "
         );
     }
 

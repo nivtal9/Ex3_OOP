@@ -4,7 +4,6 @@ import GameElements.Fruit;
 import GameElements.Robot;
 import Server.*;
 import dataStructure.*;
-import org.json.JSONException;
 import org.json.JSONObject;
 import utils.Point3D;
 import javax.imageio.ImageIO;
@@ -18,7 +17,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
-
 import GameElements.*;
 
 /**
@@ -48,6 +46,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      * Robot choosenrobot- save the id of the robot in mouse click.
      * boolean AutoMode=false- for the thread
      * Game_Algo ga- for using algorithms .
+     * boolean KML_repaint allows writing nodes to kml just ONCE
      */
     private JButton start;
     private JButton start2;
@@ -66,7 +65,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private boolean AutoMode=false;
     private Game_Algo ga;
     private int level;
+    private int ID;
     private static KML_Logger log;
+    private boolean KML_repaint=true;
 
     /**
      * function main
@@ -100,13 +101,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         this.getContentPane().add(start);
         this.getContentPane().add(start2);
         clientThread = new Thread(this);
-        /*MenuBar MB = new MenuBar();
-        this.setMenuBar(MB);
-        Menu Game = new Menu("Game");
-        MB.add(Game);
-        MenuItem New_Game = new MenuItem("New Game");
-        Game.add(New_Game);
-        New_Game.addActionListener(this);*/
     }
     /**
      * This function analyze data (later to be paint in the gui)
@@ -124,11 +118,14 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=true;
             JFrame start = new JFrame();
             try {
+                ID=Integer.parseInt(JOptionPane.showInputDialog(null,"Enter your ID"));
                 level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
+
                     log =new KML_Logger(level);
+                    Game_Server.login(ID);
                     game = Game_Server.getServer(level);
                     String Graph_str = game.getGraph();
                     level_graph = new DGraph();
@@ -149,10 +146,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=false;
             JFrame start = new JFrame();
             try {
+                ID=Integer.parseInt(JOptionPane.showInputDialog(start,"Enter your ID"));
                  level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
+                    Game_Server.login(ID);
                     log =new KML_Logger(level);
                     game = Game_Server.getServer(level);
                     String Graph_str = game.getGraph();
@@ -164,8 +163,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ga=new Game_Algo();
                     ga.AutoSetRobot(game,level_graph);
                     PaintRobots=true;
-                    game.startGame();
                     AutoMode=true;
+                    game.startGame();
                     clientThread.start();
                 }
             } catch (Exception e) {
@@ -249,6 +248,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     for (edge_data edges : level_graph.getE(nodes.getKey())) {
                         g.setColor(Color.RED);
                         Point3D nodes_dest = level_graph.getNode(edges.getDest()).getLocation();
+                        if(KML_repaint){
+                            MyGameGUI.log.Place_Mark_edge(nodes.getLocation().toString(),nodes_dest.toString());
+                        }
                         double nodes_dest_x = scale(nodes_dest.x(), min_node_x, max_node_x, 50, 1250);
                         double nodes_dest_y = 700 - scale(nodes_dest.y(), min_node_y, max_node_y, 50, 650);
                         Graphics2D g2 = (Graphics2D) g;
@@ -316,7 +318,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 g.drawString(game.getRobots().get(1).substring(0, 60), 100, 630);
                 g.drawString(game.getRobots().get(2).substring(0, 60), 100, 650);
             }
-
+            KML_repaint = false;
         }
     }
 
@@ -472,17 +474,24 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      */
     @Override
     public void run() {
-        int dt = 50;
+        long dt=110;
+        //int jj=0;
         while (game.isRunning()) {
             if(AutoMode){
                 try {
-                    ga.MoveRobots(game, level_graph);
-                    game.move();
                     repaint();
+                    ga.MoveRobots(game, level_graph);
+                    /*List<String> stat = game.getRobots();
+                    for(int i=0;i<stat.size();i++) {
+                        System.out.println(jj+") "+stat.get(i));
+                    }*/
+                    //jj++;
                     Thread.sleep(dt);
-                }catch (InterruptedException | JSONException e) {
+                }
+                catch(Exception e) {
                     e.printStackTrace();
                 }
+                game.sendKML(log.toString());
             }
             try {
                 game.move();
@@ -494,5 +503,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         }
         log.KML_Stop();
         JOptionPane.showMessageDialog(null, "GameOver, Final Score is: "+new Robot(game.toString()).TotalScore());
+        JOptionPane.showMessageDialog(null, "Loading HighScore and Placement for: "+ID+"...");
+        DB_Reader db=new DB_Reader();
+        JOptionPane.showMessageDialog(null,db.printLog(ID));
+        if(DB_Reader.ToughLevels(level)){
+            JOptionPane.showMessageDialog(null,db.ToughStages(ID));
+        }
+        System.exit(0);
     }
 }
