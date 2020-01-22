@@ -123,7 +123,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
-
                     log =new KML_Logger(level);
                     Game_Server.login(ID);
                     game = Game_Server.getServer(level);
@@ -146,8 +145,14 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=false;
             JFrame start = new JFrame();
             try {
-                ID=Integer.parseInt(JOptionPane.showInputDialog(start,"Enter your ID"));
-                 level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
+                String IDString=(JOptionPane.showInputDialog(start,"Enter your ID"));
+                if(IDString.equals("")){
+                    ID=205357387;
+                }
+                else {
+                    ID = Integer.parseInt(IDString);
+                }
+                level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
@@ -305,7 +310,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 }
             }
             Robot r=new Robot(game.toString());
-            g.drawString("Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore()+"    Total Moves: "+r.TotalMoves(), 950, 50);
+            g.drawString("Player: "+ID+"    Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore()+"    Total Moves: "+r.TotalMoves()+" dt is: "+ga.getdt(), 800, 50);
             if (game.getRobots().size() == 1) {
                 g.drawString(game.getRobots().get(0).substring(0, 60), 100, 610);
             }
@@ -474,34 +479,29 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      */
     @Override
     public void run() {
-        long dt=110;
-        //int jj=0;
         while (game.isRunning()) {
             if(AutoMode){
                 try {
                     repaint();
                     ga.MoveRobots(game, level_graph);
-                    /*List<String> stat = game.getRobots();
-                    for(int i=0;i<stat.size();i++) {
-                        System.out.println(jj+") "+stat.get(i));
-                    }*/
-                    //jj++;
-                    Thread.sleep(dt);
+                    Thread.sleep(ga.getdt());
                 }
                 catch(Exception e) {
                     e.printStackTrace();
                 }
-                game.sendKML(log.toString());
             }
-            try {
-                game.move();
-                repaint();
-                Thread.sleep(dt);
-            } catch (Exception e) {
-                e.printStackTrace();
+            else {
+                try {
+                    game.move();
+                    repaint();
+                    Thread.sleep(ga.getdt());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         log.KML_Stop();
+        game.sendKML(log.toString());
         JOptionPane.showMessageDialog(null, "GameOver, Final Score is: "+new Robot(game.toString()).TotalScore());
         JOptionPane.showMessageDialog(null, "Loading HighScore and Placement for: "+ID+"...");
         DB_Reader db=new DB_Reader();

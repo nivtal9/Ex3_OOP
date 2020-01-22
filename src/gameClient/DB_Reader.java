@@ -2,7 +2,6 @@ package gameClient;
 
 import java.sql.*;
 import java.util.LinkedList;
-
 import static gameClient.SimpleDB.*;
 
 class DB_Reader {
@@ -39,7 +38,6 @@ class DB_Reader {
                 String allCustomersQuery = "SELECT * FROM Logs where userID="+id+" AND levelID="+i;
                 resultSet = statement.executeQuery(allCustomersQuery);
                 str.append("level ").append(i).append(") ");
-                //try {
                     while (resultSet.next()) {
                         have_a_score = true;
                         ind++;
@@ -66,10 +64,6 @@ class DB_Reader {
                             }
                         }
                     }
-/*                }
-                catch (Exception e){
-                    have_a_score=false;
-                }*/
                 if(have_a_score&&time!=null){
                     str.append("score: ").append(MaxScore).append(", moves: ").append(MinMoves).append(", at Time: ").append(time.toString()).append("\n");
                 }
@@ -78,7 +72,6 @@ class DB_Reader {
                 }
             }
             str.append("\n").append("ID: ").append(id).append(" has Played: ").append(ind).append(" games.").append("\n").append("MaxLevel Reached is:").append(MaxLevel).append("\n");
-            assert resultSet != null;
             resultSet.close();
             statement.close();
             connection.close();

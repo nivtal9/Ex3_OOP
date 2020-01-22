@@ -5,12 +5,9 @@ import algorithms.Graph_Algo;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,6 +17,7 @@ import java.util.List;
  */
 
 public class Game_Algo  implements game_algorithms {
+    private int dt=150;
     private static final double EPSILON = 0.0000001;
     /**
      * https://www.mathsisfun.com/algebra/distance-2-points.html
@@ -154,8 +152,9 @@ public class Game_Algo  implements game_algorithms {
         int key =-1;
         double shortestpathdist=Integer.MAX_VALUE;
         ga.init(levelgraph);
+        edge_data ed=null;
         for (int j = 0; j <game.getFruits().size() ; j++){
-            edge_data ed=getFruitEdge(j, game, levelgraph);
+            ed=getFruitEdge(j, game, levelgraph);
             if (ga.shortestPathDist(src, ed.getDest()) < shortestpathdist) {
                 try {
                     shortestpathdist = ga.shortestPathDist(src, ed.getDest());
@@ -166,6 +165,16 @@ public class Game_Algo  implements game_algorithms {
                 }
             }
         }
+        if(key==ed.getDest()){
+            dt=70;
+        }
+        else{
+            dt=150;
+        }
         return key;
+    }
+    @Override
+    public int getdt() {
+        return this.dt;
     }
 }

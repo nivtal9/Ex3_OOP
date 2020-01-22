@@ -11,17 +11,13 @@
       <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ex2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/GameServer_v0.32.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/Ex4_Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/Ex4_Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/3.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/3.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/game_algorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/game_algorithms.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/SimpleDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/SimpleDB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/Ex4_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/Ex4_Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameElements/game_algorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/game_algorithms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/SimpleDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/SimpleDB.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

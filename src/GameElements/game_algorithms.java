@@ -38,5 +38,8 @@ public interface game_algorithms {
      * @return edge
      */
     edge_data getFruitEdge(int i, game_service game_service, graph graph);
-
+    /**
+    * gets the refresh rate of the game thread
+    */
+    int getdt();
 }
