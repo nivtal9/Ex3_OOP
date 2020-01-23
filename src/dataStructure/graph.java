@@ -83,4 +83,9 @@ public interface graph {
  * @return
  */
 	public int getMC();
+	/**
+	 * function that initialize a graph with 100000 vertex and 1000000 edges
+	 */
+	public graph TheTest();
 }
+

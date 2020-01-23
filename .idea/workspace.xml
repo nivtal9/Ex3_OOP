@@ -7,10 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/DB_Reader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/DB_Reader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/Tests/DGraphTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/Tests/DGraphTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/dataStructure/DGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/dataStructure/DGraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/dataStructure/graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/dataStructure/graph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/DGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/DGraphTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStructure/DGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructure/DGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStructure/graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructure/graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Gui_Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Gui_Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +85,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MyGameGUI">
+  <component name="RunManager" selected="JUnit.DGraphTest.TheTest">
+    <configuration name="Gui_Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.Gui_Main" />
+      <module name="ex2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyGameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gameClient.MyGameGUI" />
       <module name="ex2" />
@@ -104,7 +125,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DGraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DGraphTest.TheTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ex2" />
       <extension name="coverage">
         <pattern>
@@ -114,22 +135,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="Tests" />
       <option name="MAIN_CLASS_NAME" value="Tests.DGraphTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DGraphTest.init (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ex2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.DGraphTest" />
-      <option name="METHOD_NAME" value="init" />
+      <option name="METHOD_NAME" value="TheTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -151,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DGraphTest.TheTest" />
+        <item itemvalue="Application.Gui_Main" />
         <item itemvalue="Application.MyGameGUI" />
         <item itemvalue="JUnit.Tests in ex2" />
         <item itemvalue="Application.SimpleDB" />
-        <item itemvalue="JUnit.DGraphTest.init (1)" />
-        <item itemvalue="JUnit.DGraphTest" />
       </list>
     </recent_temporary>
   </component>

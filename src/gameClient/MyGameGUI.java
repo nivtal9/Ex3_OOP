@@ -188,7 +188,13 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         }
         if (str.equals("High Score and Placements")) {
             DB_Reader db=new DB_Reader();
-            ID=Integer.parseInt(JOptionPane.showInputDialog(HighScore,"Enter your ID"));
+            try {
+                ID = Integer.parseInt(JOptionPane.showInputDialog(HighScore, "Enter your ID"));
+            }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
+                e.printStackTrace();
+            }
             int type=JOptionPane.showOptionDialog(HighScore, "Choose one of the options:", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"High Score", "ToughStages Placements"}, null);
             if(type==0) JOptionPane.showMessageDialog(HighScore,db.printLog(ID));
             if (type==1) JOptionPane.showMessageDialog(null,db.ToughStages(ID));

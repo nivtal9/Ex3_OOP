@@ -199,7 +199,13 @@ class DGraphTest {
         level_graph.removeNode(0);
         assertEquals(level_graph.nodeSize(),10);
         assertEquals(level_graph.edgeSize(),18);
-
     }
+    @Test
+    void TheTest(){
+       graph= (DGraph) graph.TheTest();
+       assertEquals(graph.edgeSize(),1000000);
+       assertEquals(graph.nodeSize(),100000);
+    }
+
 }
 

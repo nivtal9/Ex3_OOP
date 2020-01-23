@@ -236,4 +236,14 @@ public class DGraph implements graph, Serializable {
             e.printStackTrace();
         }
     }
+    public graph TheTest(){
+        graph graph=new DGraph();
+        for (int i = 0; i <100000 ; i++) {
+            graph.addNode(new node(i,new Point3D(0,0,0),0));
+        }
+        for (int i = 0; i <1000000 ; i++) {
+            graph.connect(i,i+1,0);
+        }
+        return graph;
+    }
 }
