@@ -155,5 +155,8 @@ class KML_Logger {
             e.printStackTrace();
         }
     }
-
+    @Override
+    public String toString(){
+        return str.toString();
+    }
 }

@@ -10,15 +10,18 @@
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/20.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/20.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/4.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/4.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/Tests/DGraphTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/Tests/DGraphTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/dataStructure/DGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/dataStructure/DGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/dataStructure/graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/dataStructure/graph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/DGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/DGraphTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataStructure/DGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructure/DGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataStructure/graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructure/graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/DB_Reader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/DB_Reader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/KML_Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gui/GUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gui/GUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/gui/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gui/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/KML_Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Gui_Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Gui_Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GUI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +88,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DGraphTest.TheTest">
+  <component name="RunManager" selected="JUnit.Tests in ex2">
     <configuration name="Gui_Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.Gui_Main" />
       <module name="ex2" />
@@ -157,10 +160,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DGraphTest.TheTest" />
+        <item itemvalue="JUnit.Tests in ex2" />
         <item itemvalue="Application.Gui_Main" />
         <item itemvalue="Application.MyGameGUI" />
-        <item itemvalue="JUnit.Tests in ex2" />
+        <item itemvalue="JUnit.DGraphTest.TheTest" />
         <item itemvalue="Application.SimpleDB" />
       </list>
     </recent_temporary>

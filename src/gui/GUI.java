@@ -6,11 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener, MouseListener {
+    private static boolean flag;
+    private static int g_key;
     private static graph graph;
     private JButton save;
     private JButton isconnected;
@@ -18,6 +22,8 @@ public class GUI extends JFrame implements ActionListener {
     private JButton shortestpathdist;
     private JButton shortestpath;
     private JButton load;
+    private JButton deletedge;
+    private JButton deletenode;
     private boolean paintActionPerformed;
     private List<node_data> ans;
     private int MC;
@@ -95,28 +101,39 @@ public class GUI extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MenuBar MB = new MenuBar();
         this.setMenuBar(MB);
+        this.addMouseListener(this);
         Menu File = new Menu("File");
         MB.add(File);
         Menu Algo = new Menu("Algo");
         MB.add(Algo);
+        Menu EditGraph=new Menu("EditGraph");
+        MB.add(EditGraph);
         MenuItem Save = new MenuItem("Save");
         MenuItem Load = new MenuItem("Load");
         MenuItem TSP = new MenuItem("TSP");
         MenuItem ShortestPath = new MenuItem("ShortestPath");
         MenuItem isConnected = new MenuItem("isConnected");
         MenuItem ShortestPathDist = new MenuItem("ShortestPathDist");
+        MenuItem DeleteEdge=new MenuItem("DeleteEdge");
+        MenuItem DeleteNode=new MenuItem("DeleteNode");
+        deletedge=new JButton("edges edit");
+        deletenode=new JButton("nodes edit");
         save=new JButton("save");
         load=new JButton("load");
         isconnected=new JButton("isconnected");
         tsp=new JButton("tsp");
         shortestpathdist=new JButton("shortestpathdist");
         shortestpath=new JButton("shortestpath");
+        EditGraph.add(DeleteEdge);
+        EditGraph.add(DeleteNode);
         File.add(Save);
         File.add(Load);
         Algo.add(TSP);
         Algo.add(ShortestPath);
         Algo.add(isConnected);
         Algo.add(ShortestPathDist);
+        DeleteNode.addActionListener(this);
+        DeleteEdge.addActionListener(this);
         Save.addActionListener(this);
         Load.addActionListener(this);
         TSP.addActionListener(this);
@@ -387,5 +404,169 @@ public class GUI extends JFrame implements ActionListener {
                 exception.printStackTrace();
             }
         }
+        if (str.equals("DeleteEdge")) {
+            int Source = 0,Destination = 0;
+            boolean b=true;
+            while(b) {
+                Source = Integer.parseInt(JOptionPane.showInputDialog(shortestpathdist, "Enter src from current graph"));
+                Destination = Integer.parseInt(JOptionPane.showInputDialog(shortestpathdist, "Enter dest from current graph"));
+                if(graph.getEdge(Source,Destination)!=null){
+                    b=false;
+                }
+                else{
+                    JOptionPane.showMessageDialog(shortestpathdist,"The Source or Destination keys you Entered are not in the Current Graph!");
+                    throw new RuntimeException();
+                }
+            }
+            graph.removeEdge(Source,Destination);
+            repaint();
+
+        }
+        if (str.equals("DeleteNode")) {
+            int Node = 0;
+            boolean b=true;
+            while(b) {
+                Node = Integer.parseInt(JOptionPane.showInputDialog(shortestpathdist, "Enter Node Key from current graph"));
+                if(graph.getNode(Node)!=null){
+                    b=false;
+                }
+                else{
+                    JOptionPane.showMessageDialog(shortestpathdist,"The Node Key you Entered are not in the Current Graph!");
+                    throw new RuntimeException();
+                }
+            }
+            graph.removeNode(Node);
+            repaint();
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+        try {
+            flag =true;
+            int x = e.getX();
+            int y = e.getY();
+            Point3D location=new Point3D(x, y);
+            List<node_data> nodes= new LinkedList<>(graph.getV());
+            boolean flag=false;
+
+            int key= nodes.get(nodes.size()-1).getKey();
+
+            while(!flag) {
+                key++;
+                for(node_data nodekey: nodes)	{
+                    if(nodekey.getKey()==key) {
+                        flag=false;
+                        break;
+                    }
+                    else
+                        flag=true;
+                }
+
+            }
+            boolean flag2=true;
+            for(node_data nd: nodes){
+                if(Math.abs(x-nd.getLocation().x())<30 && Math.abs(y-nd.getLocation().y())<30) {
+                    node p = new node(nd.getKey(),nd.getLocation(),0);
+                    graph.addNode(p);
+                    flag2=false;
+                    g_key = nd.getKey();
+                    GUI.flag =false;
+                    break;
+                }
+
+
+            }
+
+            if(flag2) {
+                node p = new node(key,location,0);
+                graph.addNode(p);
+            }
+
+            repaint();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+        try {
+            int IWeight=10;
+            int x = e.getX();
+            int y = e.getY();
+            Point3D Pos=new Point3D(x, y);
+            List<node_data> nodes= new LinkedList<>(graph.getV());
+            boolean flag=false;
+
+
+            int id= nodes.get(nodes.size()-1).getKey();
+
+            while(!flag) {
+
+                id++;
+                for(node_data nodekey: nodes)	{
+                    if(nodekey.getKey()==id) {
+                        flag=false;
+                        break;
+                    }
+                    else
+                        flag=true;
+                }
+
+            }
+
+
+            boolean flag2=true;
+
+            for(node_data nodekey: nodes)	{
+                if(GUI.flag && Math.abs(x-nodekey.getLocation().x())<19 && Math.abs(y-nodekey.getLocation().y())<19) {
+                    graph.connect( id-1,nodekey.getKey(), IWeight);
+                    flag2=false;
+                    break;
+                }
+                else if(!GUI.flag && Math.abs(x-nodekey.getLocation().x())<19 && Math.abs(y-nodekey.getLocation().y())<19) {
+                    graph.connect(g_key,nodekey.getKey(), IWeight);
+                    flag2=false;
+                    break;
+
+
+                }
+            }
+            if(!GUI.flag && flag2) {
+                node p = new node(id,Pos,0);
+                graph.addNode(p);
+                graph.connect(g_key, id, IWeight);
+            }
+
+            else if(flag2) {
+                node p = new node(id,Pos,0);
+                graph.addNode(p);
+                graph.connect(id-1, id, IWeight);
+            }
+
+            repaint();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
     }
 }

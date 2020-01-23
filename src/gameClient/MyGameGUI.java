@@ -62,7 +62,6 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private game_service game;
     private static DecimalFormat df2 = new DecimalFormat("#.##");
     private Thread clientThread;
-    private boolean ManuelMode;
     private boolean firstpress=false;
     private Robot choosenrobot;
     private boolean AutoMode=false;
@@ -126,7 +125,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     public void actionPerformed(ActionEvent actionEvent) {
         String str = actionEvent.getActionCommand();
         if (str.equals("Manuel Game")) {
-            ManuelMode=true;
+            AutoMode=false;
             JFrame start = new JFrame();
             try {
                 ID=Integer.parseInt(JOptionPane.showInputDialog(null,"Enter your ID"));
@@ -134,6 +133,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
                 } else {
+                    AutoMode=false;
                     log =new KML_Logger(level);
                     Game_Server.login(ID);
                     game = Game_Server.getServer(level);
@@ -155,7 +155,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             }
         }
         if (str.equals("Auto Game")) {
-            ManuelMode=false;
+            AutoMode=true;
             JFrame start = new JFrame();
             try {
                 ID=Integer.parseInt(JOptionPane.showInputDialog(start,"Enter your ID"));
@@ -272,6 +272,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 e.printStackTrace();
             }
             for (node_data nodes : level_graph.getV()) {
+                System.out.println();
                 Point3D nodes_src = nodes.getLocation();
                 MyGameGUI.log.Place_Mark("node", nodes.getLocation().toString());
                 g.setColor(Color.BLUE);
@@ -340,7 +341,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 }
             }
             Robot r=new Robot(game.toString());
-            g.drawString("Player: "+ID+"    Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore()+"    Total Moves: "+r.TotalMoves()+" dt is: "+ga.getdt(), 770, 50);
+            if(AutoMode) {
+                g.drawString("Player: " + ID + "    Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore() + "    Total Moves: " + r.TotalMoves() + " dt is: " + ga.getdt(), 770, 50);
+            }
+            else{
+                g.drawString("Player: " + ID + "    Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore(), 770, 50);
+            }
             if (game.getRobots().size() == 1) {
                 g.drawString(game.getRobots().get(0).substring(0, 60), 100, 610);
             }
@@ -434,14 +440,14 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      */
     @Override
     public void mouseClicked(MouseEvent e1) {
-        if(ManuelMode) {
+        if(!AutoMode) {
             if(game.getRobots().size()==1) {
                 Robot r = new Robot(game.getRobots(), 0);
                 double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
                 double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
                 for (edge_data ed : level_graph.getE(r.getSrc())) {
                     double ndlocationX = scale(level_graph.getNode(ed.getDest()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                    double ndlocationY = scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                    double ndlocationY = 700-scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
                     if (Math.abs(e1_get_x - ndlocationX) < 25 && Math.abs(e1_get_y - ndlocationY) < 25) {
                         game.chooseNextEdge(0, ed.getDest());
                     }
@@ -452,10 +458,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     for (int i = 0; i < game.getRobots().size(); i++) {
                         choosenrobot = new Robot(game.getRobots(), i);
                         double RobotlocationX = scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                        double RobotlocationY = scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                        double RobotlocationY = 700-scale(level_graph.getNode(choosenrobot.getSrc()).getLocation().y(), min_node_y, max_node_y, 50, 650);
                         double e1_get_y = scale(e1.getY(), 0, 700, 0, 700);
                         double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
-                        if (Math.abs(RobotlocationX - e1_get_x) < 15 && Math.abs(RobotlocationY - e1_get_y) < 15) {
+                        if (Math.abs(RobotlocationX - e1_get_x) < 25 && Math.abs(RobotlocationY - e1_get_y) < 25) {
                             firstpress = true;
                             break;
                         }
@@ -466,8 +472,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     double e1_get_x = scale(e1.getX(), 0, 1300, 0, 1300);
                     for (edge_data ed : level_graph.getE(choosenrobot.getSrc())) {
                         double ndlocationX = scale(level_graph.getNode(ed.getDest()).getLocation().x(), min_node_x, max_node_x, 50, 1250);
-                        double ndlocationY = scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
-                        if (Math.abs(e1_get_x - ndlocationX) < 15 && Math.abs(e1_get_y - ndlocationY) < 15) {
+                        double ndlocationY = 700-scale(level_graph.getNode(ed.getDest()).getLocation().y(), min_node_y, max_node_y, 50, 650);
+                        if (Math.abs(e1_get_x - ndlocationX) < 25 && Math.abs(e1_get_y - ndlocationY) < 25) {
                             game.chooseNextEdge(choosenrobot.getId(), ed.getDest());
                             firstpress = false;
                         }
@@ -524,7 +530,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 try {
                     game.move();
                     repaint();
-                    Thread.sleep(ga.getdt());
+                    Thread.sleep(60);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

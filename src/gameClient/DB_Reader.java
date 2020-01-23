@@ -2,6 +2,7 @@ package gameClient;
 
 import java.sql.*;
 import java.util.LinkedList;
+
 import static gameClient.SimpleDB.*;
 /**
  * this class allows us read the information of each game
@@ -14,7 +15,8 @@ class DB_Reader {
      * private data types of the class
      * LinkedList<Integer> levellst
      */
-    private static LinkedList<Integer> levellst;/**
+    private static LinkedList<Integer> levellst;
+    /**
      * simple constructor
      * add the linked list the
      * difficult stages in the game.
@@ -111,49 +113,41 @@ class DB_Reader {
      * @param id - for the player.
      * @return
      */
-    static String ToughStages(int id){
-        StringBuilder str=new StringBuilder();
+    static String ToughStages(int id) {
+        ResultSet resultSet = null;
+        StringBuilder str = new StringBuilder();
         str.append(id).append(" Placements for 'Tough Levels' are:").append("\n");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcUserPassword);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = null;
-            for(int level:levellst) {
-                String allCustomersQuery = "SELECT * FROM Logs where levelID=" + level;
-                resultSet = statement.executeQuery(allCustomersQuery);
-                int ind = 0;
-                boolean not_my_id=true;
-                int recentid=0;
-                if(resultSet.next()) {
-                    recentid = resultSet.getInt("userID");
-                }
-                else{
-                    throw new RuntimeException("Not found any table");
-                }
-                while (resultSet.next()&&not_my_id) {
-                    int nextid=resultSet.getInt("userID");
-                    if(recentid!=nextid) {
-                        ind++;
-                    }
-                    recentid=nextid;
-                    if(nextid==id){
-                        not_my_id=false;
+            for (int level : levellst) {
+                int place = 1;
+                String Query = "SELECT MAX(score) AS score FROM Logs where UserID=" + id + " AND levelID=" + level;
+                resultSet = statement.executeQuery(Query);
+                resultSet.next();
+                int myhigh = resultSet.getInt("score");
+                Query = "SELECT * FROM Logs where LevelID=" + level + " Order by score desc";
+                resultSet = statement.executeQuery(Query);
+                LinkedList<Integer> lst2 = new LinkedList<>();
+                while (resultSet.next()) {
+                    int nextscore = resultSet.getInt("score");
+                    if (!lst2.contains(nextscore)) {
+                        lst2.add(nextscore);
+                        if(nextscore==myhigh) break;
+                        place++;
                     }
                 }
-                str.append(level).append(") ").append(ind).append("\n");
+                str.append(level).append(") ").append(place).append("\n");
             }
             assert resultSet != null;
             resultSet.close();
             statement.close();
             connection.close();
-        }
-
-        catch (SQLException sqle) {
+        } catch (SQLException sqle) {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("Vendor Error: " + sqle.getErrorCode());
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return str.toString();
