@@ -7,16 +7,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/1.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/10.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/10.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/11.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/11.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/12.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/12.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/13.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/13.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/14.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/14.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/15.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/15.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/16.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/16.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/17.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/17.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/18.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/18.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/19.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/19.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/2.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/20.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/20.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/21.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/21.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/22.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/22.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/3.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/3.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/4.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/4.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/5.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/5.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/6.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/6.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/7.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/7.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/8.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/8.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/9.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/9.kml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/game_algorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/game_algorithms.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ex2/Tests/Game_AlgoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/Tests/Game_AlgoTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameElements/game_algorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/game_algorithms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/DB_Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/DGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/DGraphTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Game_AlgoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Game_AlgoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,7 +83,7 @@
     <property name="create.test.in.the.same.root" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/GameServer_v0.33.jar!/" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
@@ -85,19 +109,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.MyGameGUI">
-    <configuration name="Ex4_Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gameClient.Ex4_Client" />
-      <module name="ex2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gameClient.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MyGameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gameClient.MyGameGUI" />
       <module name="ex2" />
@@ -124,15 +135,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SimpleGameClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gameClient.SimpleGameClient" />
+    <configuration name="DGraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ex2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gameClient.*" />
+          <option name="PATTERN" value="Tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.DGraphTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DGraphTest.init (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ex2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.DGraphTest" />
+      <option name="METHOD_NAME" value="init" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,9 +184,9 @@
       <list>
         <item itemvalue="Application.MyGameGUI" />
         <item itemvalue="Application.SimpleDB" />
-        <item itemvalue="Application.Ex4_Client" />
-        <item itemvalue="Application.SimpleGameClient" />
         <item itemvalue="JUnit.Tests in ex2" />
+        <item itemvalue="JUnit.DGraphTest.init (1)" />
+        <item itemvalue="JUnit.DGraphTest" />
       </list>
     </recent_temporary>
   </component>
@@ -314,15 +343,6 @@
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1579431402565" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dataStructure/DGraph.java</url>
-          <line>217</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="ite" />

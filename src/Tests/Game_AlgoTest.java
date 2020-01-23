@@ -79,14 +79,14 @@ class Game_AlgoTest {
 
     @Test
     void moveRobots() throws JSONException {
-        game_service game=Game_Server.getServer(2);
+        game_service game=Game_Server.getServer(3);
         String Graph_str = game.getGraph();
+        game_service game2=game;
         DGraph level_graph = new DGraph();
         level_graph.init(Graph_str);
         game.addRobot(0);
         game.startGame();
-        new Game_Algo().MoveRobots(game,level_graph);
-        game_service game2=Game_Server.getServer(2);
+        new Game_Algo().MoveRobots(game,level_graph,-1);
         game2.addRobot(0);
         int key=-1;
         double shortestpathdist=Integer.MAX_VALUE;
@@ -138,6 +138,7 @@ class Game_AlgoTest {
             }
         }
         robot_data R2=new Robot(game.getRobots(),0);
+        game.stopGame();
         assertEquals(key,R2.getDest());
     }
 }

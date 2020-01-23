@@ -310,7 +310,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 }
             }
             Robot r=new Robot(game.toString());
-            g.drawString("Player: "+ID+"    Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore()+"    Total Moves: "+r.TotalMoves()+" dt is: "+ga.getdt(), 800, 50);
+            g.drawString("Player: "+ID+"    Level: " + level + "    Time 00:" + (game.timeToEnd() / 1000) + "    Total Score: " + r.TotalScore()+"    Total Moves: "+r.TotalMoves()+" dt is: "+ga.getdt(), 770, 50);
             if (game.getRobots().size() == 1) {
                 g.drawString(game.getRobots().get(0).substring(0, 60), 100, 610);
             }
@@ -483,7 +483,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             if(AutoMode){
                 try {
                     repaint();
-                    ga.MoveRobots(game, level_graph);
+                    ga.MoveRobots(game, level_graph,level);
                     Thread.sleep(ga.getdt());
                 }
                 catch(Exception e) {

@@ -1,6 +1,7 @@
 package Tests;
+import Server.Game_Server;
+import Server.game_service;
 import dataStructure.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.Point3D;
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DGraphTest {
     static DGraph graph = new DGraph();
     @BeforeEach
-    void init(){
+    void init2(){
         graph = new DGraph();
     }
     @Test
@@ -186,6 +187,19 @@ class DGraphTest {
         temp.setInfo(graph.getNode(11).toString());
         System.out.println(graph.getNode(11).toString());
         System.out.println(temp);
+    }
+    @Test
+    void init(){
+        game_service game= Game_Server.getServer(0);
+        String graph_str = game.getGraph();
+        DGraph level_graph = new DGraph();
+        level_graph.init(graph_str);
+        assertEquals(level_graph.nodeSize(),11);
+        assertEquals(level_graph.edgeSize(),22);
+        level_graph.removeNode(0);
+        assertEquals(level_graph.nodeSize(),10);
+        assertEquals(level_graph.edgeSize(),18);
+
     }
 }
 

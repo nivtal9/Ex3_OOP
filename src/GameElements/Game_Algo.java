@@ -7,7 +7,6 @@ import dataStructure.graph;
 import dataStructure.node_data;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.List;
 
 /**
@@ -17,8 +16,10 @@ import java.util.List;
  */
 
 public class Game_Algo  implements game_algorithms {
-    private int dt=150;
+    private int dt=40;
     private static final double EPSILON = 0.0000001;
+    private edge_data robot0=null;
+    private edge_data robot1=null;
     /**
      * https://www.mathsisfun.com/algebra/distance-2-points.html
      * Calculate the distance between src and dest of an edge. "x"
@@ -81,12 +82,14 @@ public class Game_Algo  implements game_algorithms {
     @Override
     public void AutoSetRobot(game_service game,graph level_graph) throws JSONException {
         List<String> Temp_Fruit = game.getFruits();
-        String info = game.toString();
-        JSONObject line;
-        line = new JSONObject(info);
+        JSONObject line = new JSONObject(game.toString());
         JSONObject ttt = line.getJSONObject("GameServer");
         int rs = ttt.getInt("robots");
+        int level=ttt.getInt("game_level");
         for (int i = 0; i < rs; i++) {
+            if(i==1&&level==16){
+                Temp_Fruit.remove(3);
+            }
             int maxFruit = Integer.MIN_VALUE;
             int MaxFruitID = 0;
             for (int j = 0; j < Temp_Fruit.size(); j++) {
@@ -114,10 +117,11 @@ public class Game_Algo  implements game_algorithms {
      */
 
     @Override
-    public void MoveRobots(game_service game,graph levelgraph) throws JSONException {
+    public void MoveRobots(game_service game,graph levelgraph,int level){
         List<String> log = game.move();
         if(log!=null) {
             for (String robot_json : log) {
+                boolean b=true;
                 try {
                     JSONObject line = new JSONObject(robot_json);
                     JSONObject ttt = line.getJSONObject("Robot");
@@ -126,9 +130,125 @@ public class Game_Algo  implements game_algorithms {
                     int dest = ttt.getInt("dest");
                     if (dest == -1) {
                         dest = nextNode(levelgraph, src, game);
+                    }
+                    if (log.size() == 2) {
+                        if (rid == 0) {
+                            robot0 = levelgraph.getEdge(src, dest);
+                        }
+                        if (rid == 1) {
+                            edge_data temp = levelgraph.getEdge(src, dest);
+                            if (temp.getDest() == robot0.getDest() || temp.getDest() == robot0.getSrc()) {
+                                try {
+                                    if (src != dest + 1) {
+                                        game.chooseNextEdge(rid, dest + 1);
+                                    } else {
+                                        game.chooseNextEdge(rid, dest - 1);
+                                    }
+                                    b=false;
+                                } catch (Exception e) {
+                                    game.chooseNextEdge(rid, dest - 1);
+                                    b=false;
+                                }
+                            }
+                        }
+                    }
+                    if (log.size() == 3) {
+                        if (rid == 0) {
+                            robot0 = levelgraph.getEdge(src, dest);
+                        }
+                        if (rid == 1) {
+                            robot1 = levelgraph.getEdge(src, dest);
+                            edge_data temp = levelgraph.getEdge(src, dest);
+                            if (temp.getDest() == robot0.getDest() || temp.getDest() == robot0.getSrc()) {
+                                try {
+                                    if (src != dest + 1) {
+                                        game.chooseNextEdge(rid, dest + 1);
+                                    } else {
+                                        game.chooseNextEdge(rid, dest - 1);
+                                    }
+                                    b=false;
+                                } catch (Exception e) {
+                                    game.chooseNextEdge(rid, dest - 1);
+                                    b=false;
+                                }
+                            }
+                        }
+                        if (rid==2){
+                            edge_data temp = levelgraph.getEdge(src, dest);
+                            if (temp.getDest() == robot0.getDest() || temp.getDest() == robot0.getSrc()||temp.getDest()==robot1.getDest()||temp.getDest()==robot1.getSrc()) {
+                                try {
+                                    if (src != dest + 1) {
+                                        game.chooseNextEdge(rid, dest + 1);
+                                    } else {
+                                        game.chooseNextEdge(rid, dest - 1);
+                                    }
+                                    b=false;
+                                } catch (Exception e) {
+                                    game.chooseNextEdge(rid, dest - 1);
+                                    b=false;
+                                }
+                            }
+                        }
+                    }
+                    if(b) {
                         game.chooseNextEdge(rid, dest);
                     }
-                } catch (JSONException e) {
+                    boolean dtchange=false;
+                    if(log.size()==1){
+                        if (fruitonedge(src, dest, levelgraph, game) || fruitonedge(dest, src, levelgraph, game)){
+                            dtchange=true;
+                        }
+                    }
+                    if(log.size()==2){
+                        if (fruitonedge(src, dest, levelgraph, game) || fruitonedge(dest, src, levelgraph, game) ||
+                                fruitonedge(robot0.getSrc(),robot0.getDest(),levelgraph,game)||fruitonedge(robot0.getDest(),robot0.getSrc(),levelgraph,game)){
+                            dtchange=true;
+                        }
+                    }
+                    if(log.size()==3){
+                        if (fruitonedge(src, dest, levelgraph, game) || fruitonedge(dest, src, levelgraph, game) ||
+                                fruitonedge(robot0.getSrc(),robot0.getDest(),levelgraph,game)||fruitonedge(robot0.getDest(),robot0.getSrc(),levelgraph,game) ||
+                                fruitonedge(robot1.getSrc(),robot1.getDest(),levelgraph,game)||(fruitonedge(robot1.getDest(),robot1.getSrc(),levelgraph,game))) {
+                            dtchange=true;
+                        }
+                    }
+                    if (dtchange) {
+                        switch (level) {
+                            case 9:
+                            case 20:
+                            case 21:
+                            case 23:
+                                dt = 40;
+                                break;
+                            case 16:
+                                dt = 65;
+                                break;
+                            default:
+                                dt = 70;
+                        }
+                    } else {
+                        switch (level) {
+                            case 21:
+                            case 23:
+                                dt=75;
+                                break;
+                            case 20:
+                                dt=175;
+                                break;
+                            case 5:
+                                dt = 190;
+                                break;
+                            case 9:
+                            case 19:
+                            case 16:
+                            case 13:
+                                dt = 120;
+                                break;
+                            default:
+                                dt = 170;
+                        }
+                    }
+                } catch (JSONException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -147,14 +267,13 @@ public class Game_Algo  implements game_algorithms {
      * @return key -id of node dest.
      */
 
-    private int nextNode(graph levelgraph, int src,game_service game) {
+    private int nextNode(graph levelgraph, int src,game_service game) throws InterruptedException {
         Graph_Algo ga=new Graph_Algo();
         int key =-1;
         double shortestpathdist=Integer.MAX_VALUE;
         ga.init(levelgraph);
-        edge_data ed=null;
         for (int j = 0; j <game.getFruits().size() ; j++){
-            ed=getFruitEdge(j, game, levelgraph);
+            edge_data ed=getFruitEdge(j, game, levelgraph);
             if (ga.shortestPathDist(src, ed.getDest()) < shortestpathdist) {
                 try {
                     shortestpathdist = ga.shortestPathDist(src, ed.getDest());
@@ -165,16 +284,24 @@ public class Game_Algo  implements game_algorithms {
                 }
             }
         }
-        if(key==ed.getDest()){
-            dt=70;
-        }
-        else{
-            dt=150;
-        }
         return key;
     }
     @Override
     public int getdt() {
         return this.dt;
+    }
+    @Override
+    public boolean fruitonedge(int src, int dest, graph level_graph, game_service game){
+        edge_data ed=level_graph.getEdge(src,dest);
+        for (int i = 0; i <game.getFruits().size() ; i++) {
+            Fruit f=new Fruit(game.getFruits(),i);
+            double distance = Math.sqrt(Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().x()) - (level_graph.getNode(ed.getDest()).getLocation().x())), 2) + Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().y()) - (level_graph.getNode(ed.getDest()).getLocation().y())), 2));
+            double fruit_from_dest = Math.sqrt(Math.pow(((f.getLocation().x() - (level_graph.getNode(ed.getDest()).getLocation().x()))), 2) + Math.pow(((f.getLocation().y() - (level_graph.getNode(ed.getDest()).getLocation().y()))), 2));
+            double fruit_to_src = Math.sqrt(Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().x()) - (f.getLocation().x())), 2) + Math.pow(((level_graph.getNode(ed.getSrc()).getLocation().y()) - (f.getLocation().y())), 2));
+            if (fruit_from_dest + fruit_to_src - distance <= EPSILON) {
+                return true;
+            }
+        }
+        return false;
     }
 }
