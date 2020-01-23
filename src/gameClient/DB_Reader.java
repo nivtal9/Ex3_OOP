@@ -124,9 +124,20 @@ class DB_Reader {
                 resultSet = statement.executeQuery(allCustomersQuery);
                 int ind = 0;
                 boolean not_my_id=true;
+                int recentid=0;
+                if(resultSet.next()) {
+                    recentid = resultSet.getInt("userID");
+                }
+                else{
+                    throw new RuntimeException("Not found any table");
+                }
                 while (resultSet.next()&&not_my_id) {
-                    ind++;
-                    if(resultSet.getInt("userID")==id){
+                    int nextid=resultSet.getInt("userID");
+                    if(recentid!=nextid) {
+                        ind++;
+                    }
+                    recentid=nextid;
+                    if(nextid==id){
                         not_my_id=false;
                     }
                 }
