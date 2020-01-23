@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
 import GameElements.*;
@@ -47,6 +48,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      * boolean AutoMode=false- for the thread
      * Game_Algo ga- for using algorithms .
      * boolean KML_repaint allows writing nodes to kml just ONCE
+     * JButton HighScore read the highscore and database with DB_Reader
+     * JButton kml Open the Folder where KML is on
      */
     private JButton start;
     private JButton start2;
@@ -68,6 +71,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private int ID;
     private static KML_Logger log;
     private boolean KML_repaint=true;
+    private JButton HighScore;
+    private JButton kml;
 
     /**
      * function main
@@ -95,11 +100,17 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         this.addMouseListener(this);
         start = new JButton("Manuel Game");
         start2 = new JButton("Auto Game");
+        HighScore=new JButton("High Score and Placements");
+        kml=new JButton("KML Folder");
         start.addActionListener(this);
         start2.addActionListener(this);
-        this.getContentPane().setLayout(new GridLayout());
+        HighScore.addActionListener(this);
+        kml.addActionListener(this);
+        this.getContentPane().setLayout(new GridLayout(2,2));
         this.getContentPane().add(start);
         this.getContentPane().add(start2);
+        this.getContentPane().add(HighScore);
+        this.getContentPane().add(kml);
         clientThread = new Thread(this);
     }
     /**
@@ -131,6 +142,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
+                    this.remove(this.HighScore);
+                    this.remove(this.kml);
                     repaint();
                     ManuelsetRobots();
                     game.startGame();
@@ -145,13 +158,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
             ManuelMode=false;
             JFrame start = new JFrame();
             try {
-                String IDString=(JOptionPane.showInputDialog(start,"Enter your ID"));
-                if(IDString.equals("")){
-                    ID=205357387;
-                }
-                else {
-                    ID = Integer.parseInt(IDString);
-                }
+                ID=Integer.parseInt(JOptionPane.showInputDialog(start,"Enter your ID"));
                 level = Integer.parseInt(JOptionPane.showInputDialog(start, "Enter level between 0-23"));
                 if (level < 0 || level > 23) {
                     JOptionPane.showMessageDialog(start, "Invalid level");
@@ -164,6 +171,8 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     ((DGraph) level_graph).init(Graph_str);
                     this.remove(this.start);
                     this.remove(this.start2);
+                    this.remove(this.HighScore);
+                    this.remove(this.kml);
                     game.startGame();
                     ga=new Game_Algo();
                     ga.AutoSetRobot(game,level_graph);
@@ -177,7 +186,22 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 e.printStackTrace();
             }
         }
-        //if (str.equals("New Game")) { }
+        if (str.equals("High Score and Placements")) {
+            DB_Reader db=new DB_Reader();
+            ID=Integer.parseInt(JOptionPane.showInputDialog(HighScore,"Enter your ID"));
+            int type=JOptionPane.showOptionDialog(HighScore, "Choose one of the options:", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"High Score", "ToughStages Placements"}, null);
+            if(type==0) JOptionPane.showMessageDialog(HighScore,db.printLog(ID));
+            if (type==1) JOptionPane.showMessageDialog(null,db.ToughStages(ID));
+        }
+        if (str.equals("KML Folder")) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.open(new File("data"));
+            } catch (IllegalArgumentException | IOException iae) {
+                System.out.println("File Not Found");
+                iae.printStackTrace();
+            }
+        }
     }
     /**
      * This private function called by "actionPerformed"

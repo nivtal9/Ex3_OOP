@@ -9,38 +9,8 @@
     <list default="true" id="fa106124-53ab-4bd8-a5c2-f0e985df6cb1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ex2_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/0.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/0.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/1.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/10.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/10.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/11.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/11.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/12.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/13.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/13.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/14.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/14.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/15.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/15.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/16.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/16.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/17.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/17.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/18.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/18.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/19.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/19.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/2.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/2.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/20.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/20.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/21.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/21.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/22.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/22.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/23.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/23.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/3.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/3.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/4.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/4.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/5.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/5.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/6.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/6.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/7.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/7.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/8.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/8.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/9.kml" beforeDir="false" afterPath="$PROJECT_DIR$/data/9.kml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/Game_Algo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/GameElements/game_algorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/GameElements/game_algorithms.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ex2/Tests/Game_AlgoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/Tests/Game_AlgoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex2.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ex2/gameClient/MyGameGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/Game_Algo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameElements/game_algorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameElements/game_algorithms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/DGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/DGraphTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/Game_AlgoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Game_AlgoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameClient/MyGameGUI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
