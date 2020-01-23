@@ -286,10 +286,24 @@ public class Game_Algo  implements game_algorithms {
         }
         return key;
     }
+
+    /**
+     * gets the refresh rate of the game thread
+     * @return
+     */
     @Override
     public int getdt() {
         return this.dt;
     }
+
+    /**
+     * gets a placement of a robot and the method checks if there is a fruit on the robot placement(edge)
+     * @param src src of the robot
+     * @param dest dest of the robot
+     * @param level_graph the graph of the game
+     * @param game the game itself
+     * @return true if there is a fruit on the robot edge, false if there is not a fruit on the robot edge
+     */
     @Override
     public boolean fruitonedge(int src, int dest, graph level_graph, game_service game){
         edge_data ed=level_graph.getEdge(src,dest);

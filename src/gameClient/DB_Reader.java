@@ -3,9 +3,23 @@ package gameClient;
 import java.sql.*;
 import java.util.LinkedList;
 import static gameClient.SimpleDB.*;
-
+/**
+ * this class allows us read the information of each game
+ *  a specific player played.
+ *  by id user enters
+ * the information is read from data base SQL
+ */
 class DB_Reader {
-    private static LinkedList<Integer> levellst;
+    /**
+     * private data types of the class
+     * LinkedList<Integer> levellst
+     */
+    private static LinkedList<Integer> levellst;/**
+     * simple constructor
+     * add the linked list the
+     * difficult stages in the game.
+     * The server defines which level is difficult .
+     */
     DB_Reader(){
         levellst=new LinkedList<>();
         levellst.add(0);
@@ -20,6 +34,11 @@ class DB_Reader {
         levellst.add(20);
         levellst.add(23);
     }
+    /**
+     * The function prints for the player the highest score he could finished a game with
+     * @param id- for the player.
+     * @return
+     */
     static String printLog(int id) {
         StringBuilder str= new StringBuilder();
         try {
@@ -86,9 +105,15 @@ class DB_Reader {
         }
         return str.toString();
     }
+    /**
+     * If a player chooses to play a game from the difficult stages.
+     * The function will print the score for it relative to the other players
+     * @param id - for the player.
+     * @return
+     */
     static String ToughStages(int id){
         StringBuilder str=new StringBuilder();
-        str.append("Placements for 'Tough Levels' are:").append("\n");
+        str.append(id).append(" Placements for 'Tough Levels' are:").append("\n");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcUserPassword);
@@ -122,6 +147,15 @@ class DB_Reader {
         }
         return str.toString();
     }
+    /**
+     *this function check for each difficult level
+     * if the number of moves taken in the game
+     * is lower then the maximum number of steps can be taken to pass a stage.
+     *
+     * @param moves- enter a number of moves taken
+     * @param level - which level was played
+     * @return true if lower then the maximum
+     */
     private static boolean underMaxMoves(int moves,int level){
         switch(level) {
             case 0 :
@@ -142,6 +176,11 @@ class DB_Reader {
             default: return false;
         }
     }
+    /**
+     * boolean function to check if a level is a difficult level
+     * @param level
+     * @return
+     */
     static boolean ToughLevels(int level){
         return levellst.contains(level);
     }
