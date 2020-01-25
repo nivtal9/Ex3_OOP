@@ -47,7 +47,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
      * Robot choosenrobot- save the id of the robot in mouse click.
      * boolean AutoMode=false- for the thread
      * Game_Algo ga- for using algorithms .
-     * boolean KML_repaint allows writing nodes to kml just ONCE
+     * boolean repaint_once allows writing nodes to kml and get max/min nodes just ONCE
      * JButton HighScore read the highscore and database with DB_Reader
      * JButton kml Open the Folder where KML is on
      */
@@ -69,7 +69,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     private int level;
     private int ID;
     private static KML_Logger log;
-    private boolean KML_repaint=true;
+    private boolean repaint_once =true;
     private JButton HighScore;
     private JButton kml;
 
@@ -173,11 +173,9 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     this.remove(this.start2);
                     this.remove(this.HighScore);
                     this.remove(this.kml);
-                    game.startGame();
                     ga=new Game_Algo();
                     ga.AutoSetRobot(game,level_graph);
                     PaintRobots=true;
-                    AutoMode=true;
                     game.startGame();
                     clientThread.start();
                 }
@@ -188,12 +186,15 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
         }
         if (str.equals("High Score and Placements")) {
             DB_Reader db=new DB_Reader();
-            try {
-                ID = Integer.parseInt(JOptionPane.showInputDialog(HighScore, "Enter your ID"));
-            }
-            catch (Exception e){
-                JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
-                e.printStackTrace();
+            boolean b=false;
+            while(!b) {
+                try {
+                    ID = Integer.parseInt(JOptionPane.showInputDialog(HighScore, "Enter your ID"));
+                    b=true;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(start, "Invalid Pattern/Not entered any Number");
+                    e.printStackTrace();
+                }
             }
             int type=JOptionPane.showOptionDialog(HighScore, "Choose one of the options:", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"High Score", "ToughStages Placements"}, null);
             if(type==0) JOptionPane.showMessageDialog(HighScore,db.printLog(ID));
@@ -259,10 +260,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
     public void paintComponents(Graphics g){
         super.paint(g);
         if (level_graph != null) {
-            max_node_x = getMaxMinNode(level_graph.getV(), true, true);
-            max_node_y = getMaxMinNode(level_graph.getV(), true, false);
-            min_node_x = getMaxMinNode(level_graph.getV(), false, true);
-            min_node_y = getMaxMinNode(level_graph.getV(), false, false);
+            if(repaint_once) {
+                max_node_x = getMaxMinNode(level_graph.getV(), true, true);
+                max_node_y = getMaxMinNode(level_graph.getV(), true, false);
+                min_node_x = getMaxMinNode(level_graph.getV(), false, true);
+                min_node_y = getMaxMinNode(level_graph.getV(), false, false);
+            }
             try {
                 String[] splitData = game.toString().split("[:\\}]");
                 BufferedImage graph_image = ImageIO.read(new File(splitData[9].substring(1, 8) + ".png"));
@@ -272,9 +275,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 e.printStackTrace();
             }
             for (node_data nodes : level_graph.getV()) {
-                System.out.println();
                 Point3D nodes_src = nodes.getLocation();
-                MyGameGUI.log.Place_Mark("node", nodes.getLocation().toString());
+                if(repaint_once) {
+                    MyGameGUI.log.Place_Mark("node", nodes.getLocation().toString());
+                }
                 g.setColor(Color.BLUE);
                 double nodes_src_x = scale(nodes_src.x(), min_node_x, max_node_x, 50, 1250);
                 double nodes_src_y = 700 - scale(nodes_src.y(), min_node_y, max_node_y, 50, 650);
@@ -284,7 +288,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                     for (edge_data edges : level_graph.getE(nodes.getKey())) {
                         g.setColor(Color.RED);
                         Point3D nodes_dest = level_graph.getNode(edges.getDest()).getLocation();
-                        if(KML_repaint){
+                        if(repaint_once){
                             MyGameGUI.log.Place_Mark_edge(nodes.getLocation().toString(),nodes_dest.toString());
                         }
                         double nodes_dest_x = scale(nodes_dest.x(), min_node_x, max_node_x, 50, 1250);
@@ -359,7 +363,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 g.drawString(game.getRobots().get(1).substring(0, 60), 100, 630);
                 g.drawString(game.getRobots().get(2).substring(0, 60), 100, 650);
             }
-            KML_repaint = false;
+            repaint_once = false;
         }
     }
 
@@ -536,14 +540,18 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener,R
                 }
             }
         }
-        log.KML_Stop();
-        game.sendKML(log.toString());
         JOptionPane.showMessageDialog(null, "GameOver, Final Score is: "+new Robot(game.toString()).TotalScore());
         JOptionPane.showMessageDialog(null, "Loading HighScore and Placement for: "+ID+"...");
+        log.KML_Stop();
+        game.sendKML(log.toString());
         DB_Reader db=new DB_Reader();
-        JOptionPane.showMessageDialog(null,db.printLog(ID));
         if(DB_Reader.ToughLevels(level)){
-            JOptionPane.showMessageDialog(null,db.ToughStages(ID));
+            String st=db.ToughStages(ID);
+            JOptionPane.showMessageDialog(null,db.printLog(ID));
+            JOptionPane.showMessageDialog(null,st);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,db.printLog(ID));
         }
         System.exit(0);
     }
